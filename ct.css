@@ -74,7 +74,11 @@ font-size: 48px;
 width: 36;
 }
 
-/*ton to WARNING*/
+/*ton to reader*/
+
+#reader {font-size: 35px}
+
+/*reader to WARNING*/
 
 .warning {background-color: yellow;
 	color: red;}
