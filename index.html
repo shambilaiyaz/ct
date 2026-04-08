@@ -15,64 +15,63 @@
         <script src="ct.js"></script>
     </head>
 
-    <body>
+    <body onload="checkAccess()">
         <!-- All links are red and cursive and bold !-->
+        <div id="ful-page">
+            <h1 id="cat">cats!</h1>
 
-        <h1 id="cat">cats!</h1>
+            <!-- boottin !-->
 
-        <!-- boottin !-->
+            <button id="ton" onclick="showAlert()">ton</button>
 
-        <button id="ton" onclick="showAlert()">ton</button>
-
-        <!-- img -->
-        <h2>
-            <img
-                src="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/animals/cat.png"
-                width="425"
-                alt="ct climbing images"
-            />
+            <!-- img -->
+            <h2>
+                <img
+                    src="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/animals/cat.png"
+                    width="425"
+                    alt="ct climbing images"
+                />
+                <br />
+                <span id="wild">wild cat!</span>
+            </h2>
+            <!-- link -->
+            <a href="https://www.britannica.com/animal/cat"
+                ><span id="history">cats history</span></a
+            >
             <br />
-            <span id="wild">wild cat!</span>
-        </h2>
-        <!-- link -->
-        <a href="https://www.britannica.com/animal/cat"
-            ><span id="history">cats history</span></a
-        >
-        <br />
-        <!-- sound -->
-        <button id="reader" onclick="playSound()">read for me</button>
-        <h2 id="blue">
-            cats like to be <span id="nit">clean</span> and act at their own
-            style. <br />
-            they like to discover about <em>wigly</em> things. <br />
+            <!-- sound -->
+            <button id="reader" onclick="playSound()">read for me</button>
+            <h2 id="blue">
+                cats like to be <span id="nit">clean</span> and act at their own
+                style. <br />
+                they like to discover about <em>wigly</em> things. <br />
 
-            <!-- opti !-->
+                <!-- opti !-->
 
-            <select id="opti">
-                <option>rope</option>
-                <option>rat</option>
-                <option>feather</option>
-                <option>laser</option>
-            </select>
-        </h2>
+                <select id="opti">
+                    <option>rope</option>
+                    <option>rat</option>
+                    <option>feather</option>
+                    <option>laser</option>
+                </select>
+            </h2>
 
-        <!-- researched line -->
-        <h2 id="green">cats hate green</h2>
-        <br />
+            <!-- researched line -->
+            <h2 id="green">cats hate green</h2>
+            <br />
 
-        <h2 class="warning">remember</h2>
+            <h2 class="warning">remember</h2>
 
-        <h2 class="warning">
-            don't try to surround your cat when their not happy
-        </h2>
+            <h2 class="warning">
+                don't try to surround your cat when their not happy
+            </h2>
 
-        <h2 class="warning">or else they will pee on you</h2>
+            <h2 class="warning">or else they will pee on you</h2>
 
-        <!-- link -->
-        <a href="https://en.wikipedia.org/wiki/Wildlife"
-            ><span id="plant">Wildness</span></a
-        >
-
+            <!-- link -->
+            <a href="https://en.wikipedia.org/wiki/Wildlife"
+                ><span id="plant">Wildness</span></a>
+        </div>
         <!-- /ct -->
     </body>
 </html>
