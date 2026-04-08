@@ -86,6 +86,8 @@ body {
     font-family: fantasy;
     font-size: 48px;
     width: 76px;
+    outline: double;
+    border-color: lawngreen;
 }
 
 /*ton to reader*/
@@ -97,11 +99,4 @@ body {
     color: blue;
     text-decoration: underline;
     border: solid crimson;
-}
-
-/*reader to WARNING*/
-
-.warning {
-    background-color: yellow;
-    color: red;
 }
