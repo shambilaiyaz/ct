@@ -86,8 +86,9 @@ body {
     font-family: fantasy;
     font-size: 48px;
     width: 76px;
-    outline: double;
+    border-width: bold;
     border-color: lawngreen;
+    outline: double;
 }
 
 /*ton to reader*/
