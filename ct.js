@@ -10,8 +10,10 @@ function playSound() {
 }
 // ===================================================================================
 function checkAccess() {
-  let paskey = prompt("hint: what are you looking for in my web,learning?");
-  if (paskey && paskey.trim() === "cat learning") {
+  let paskey = prompt(
+    "hint: what are you looking for in my web, learning? (Y/N)",
+  );
+  if (paskey && paskey.trim() === "Yes") {
     document.getElementById("ful-page").style.display = "block";
   } else {
     alert(

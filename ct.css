@@ -110,7 +110,8 @@ body {
     font-family: fantasy;
 }
 
-/* Hide content until password is entered */
+/*WARNING to ful-page*/
+
 #ful-page {
     display: none;
 }
