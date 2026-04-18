@@ -20,13 +20,35 @@
     </head>
 
     <body onload="Login()">
+        <!-- Login Modal -->
+        <div id="login-overlay">
+            <div id="login-box">
+                <h1 id="login-title">🐱 ct web</h1>
+                <label for="login-user">username</label>
+                <input
+                    type="text"
+                    id="login-user"
+                    placeholder="enter your name"
+                />
+                <label for="login-pass">why are you here?</label>
+                <input
+                    type="text"
+                    id="login-pass"
+                    placeholder="hint: what are you looking for (Y/N)"
+                />
+                <button id="login-btn" onclick="submitLogin()">enter</button>
+                <p id="login-error"></p>
+            </div>
+        </div>
+
         <!--All links red cursive and bold -->
         <div id="ful-page">
+            <h1 id="welcom"></h1>
             <h1 id="cat">cats!</h1>
 
             <!-- boottin !-->
 
-            <button id="ton" onclick="showAlert()">ton</button>
+            <button id="ton" onclick="showAlert1()">ton</button>
 
             <!-- img -->
             <h2>
@@ -89,6 +111,7 @@
             <a href="https://en.wikipedia.org/wiki/Wildlife"
                 ><span id="plant">Wildness</span></a
             >
+            <button onclick="showAlert2()" id="help">?</button>
         </div>
         <!-- /ct -->
     </body>
