@@ -127,10 +127,15 @@ body {
 /*...*/
 
 #help {
-    margin-left: 1764px;
+    text-align: 50px;
+    margin-left: 16px;
     color: black;
     font-weight: bold;
     border: solid crimson;
+    font-size: 48px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 /*login overlay*/
@@ -215,4 +220,50 @@ body {
     font-size: 16px;
     margin-top: 12px;
     font-weight: bold;
+}
+
+/*power command box*/
+
+#power-box {
+    margin-top: 20px;
+    padding: 12px;
+    border: solid deepskyblue;
+    border-radius: 8px;
+    background-color: black;
+}
+
+#power-input {
+    width: 70%;
+    padding: 8px;
+    font-size: 16px;
+    font-family: monospace;
+    border: solid lawngreen;
+    border-radius: 4px;
+    background-color: #111;
+    color: lawngreen;
+}
+
+#power-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: deepskyblue;
+    border: solid deepskyblue;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+#power-btn:hover {
+    background-color: lawngreen;
+    border-color: lawngreen;
+}
+
+#power-output {
+    color: lawngreen;
+    font-family: monospace;
+    font-size: 14px;
+    margin-top: 10px;
+    white-space: pre-wrap;
 }
