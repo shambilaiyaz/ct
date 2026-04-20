@@ -82,9 +82,10 @@ body {
 /*blue to welcom*/
 
 #welcom {
-    background-color: deepskyblue;
     color: black;
-    margin-left: 60px;
+    margin-left: 602px;
+    font-family: cursive;
+    font-size: 50px;
 }
 
 /*welcom to ton*/
