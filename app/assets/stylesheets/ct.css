@@ -1,4 +1,4 @@
-------/*
+/*
  * This is a manifest file that'll be compiled into application.css via Propshaft.
  * Styles declared later override earlier ones depending on specificity.
  */
@@ -664,9 +664,9 @@ body {
     border: 1px solid #dc3545;
 }
 
-/* interType button — commented out for rebuild */
+/* interType button */
 
-/* #inter_type-btn {
+#inter_type-btn {
     display: inline-block;
     margin-top: 16px;
     padding: 12px 24px;
@@ -695,4 +695,4 @@ body {
 #inter_type-btn:active {
     transform: scale(0.96);
     box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
-} */
+}

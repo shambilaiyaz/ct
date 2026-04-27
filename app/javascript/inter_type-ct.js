@@ -112,9 +112,8 @@ function interTypeRespond(userMessage) {
 
   if (
     matchesAny(msg, [
-      "what is placeholder mean?",
       "what is this button run mean?",
-      "what is this black thing?",
+      "what is this black spot?",
     ])
   ) {
     return "that's a terminal run command ~man first it's gonn'a teach you what commands are functioning here, and if you don't no what those other things does than tap on it or fell free to ask";
