@@ -22,24 +22,34 @@ function allRequiredChecked() {
   return isCatLearnChecked() && isDoneChecked();
 }
 
-// Save or remove remembered username on login
-function handleRemember(username) {
+// Save or remove remembered username and email on login
+function handleRemember(username, email) {
   var rememberCheck = document.getElementById("remember-check");
   if (rememberCheck && rememberCheck.checked) {
     localStorage.setItem("ct_remember_username", username);
+    if (email) localStorage.setItem("ct_remember_email", email);
   } else {
     localStorage.removeItem("ct_remember_username");
+    localStorage.removeItem("ct_remember_email");
   }
 }
 
 // Submit login form
 function submitLogin() {
   var username = document.getElementById("login-user").value.trim();
+  var email = document.getElementById("login-email")
+    ? document.getElementById("login-email").value.trim()
+    : "";
   var paskey = document.getElementById("login-pass").value.trim();
   var errorEl = document.getElementById("login-error");
 
   if (!username) {
     errorEl.textContent = "plese enter your username!";
+    return;
+  }
+
+  if (!email) {
+    errorEl.textContent = "plese enter your email!";
     return;
   }
 
@@ -55,12 +65,35 @@ function submitLogin() {
 
   if (paskey === "Yes") {
     sessionStorage.setItem("ct_username", username);
-    handleRemember(username);
+    sessionStorage.setItem("ct_email", email);
+    handleRemember(username, email);
+    // Save email to database via AJAX
+    saveEmailToDb(email, username);
     window.location.href = "/index";
   } else {
     errorEl.textContent =
       "are you here to learn about cats? type Yes to enter!";
   }
+}
+
+// Save email to SQLite via the user_emails endpoint
+function saveEmailToDb(email, username) {
+  var csrfToken = document.querySelector('meta[name="csrf-token"]');
+  var headers = {
+    "X-Requested-With": "XMLHttpRequest",
+    Accept: "application/json",
+  };
+  if (csrfToken) {
+    headers["X-CSRF-Token"] = csrfToken.getAttribute("content");
+  }
+  fetch("/user_emails", {
+    method: "POST",
+    headers: headers,
+    credentials: "same-origin",
+    body: JSON.stringify({ user_email: { email: email, username: username } }),
+  }).catch(function () {
+    // silently fail — email save is non-critical
+  });
 }
 
 // Bind checkbox listeners and fill remembered username after DOM is ready
@@ -108,8 +141,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Fill in remembered username on page load
+  // Fill in remembered username and email on page load
   var savedName = localStorage.getItem("ct_remember_username");
+  var savedEmail = localStorage.getItem("ct_remember_email");
   if (savedName) {
     var userInput = document.getElementById("login-user");
     var rememberCheck = document.getElementById("remember-check");
@@ -124,6 +158,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // Enable login button only if both required checkboxes are checked
     updateLoginButton();
+  }
+  if (savedEmail) {
+    var emailInput = document.getElementById("login-email");
+    if (emailInput) {
+      emailInput.value = savedEmail;
+    }
   }
 
   // Show the login overlay on page load

@@ -1,16 +1,16 @@
 // TURMUX-CT — Time Travel Command System
 // ===================================================================================
 // Commands:
-//   terminal / turmux / terminator → show this command man
-//   comment <text>                → leave a comment for the site
-//   comment delete <N>            → delete comment number N
-//   comment clear                 → delete all comments
-//   comments                      → show all comments
-//   chnge code to date=N           → revert page to commit var:N
-//   chnge code to var=N            → revert page to commit var:N
-//   commit sv                    → save current state as a new commit
-//   commit log                     → show all commits
-//   commit nw                     → save with auto date
+//   man / terminal / turmux / terminator → show this command man
+//   comment <text>                       → leave a comment for the site
+//   comment delete <N>                   → delete comment number N
+//   comment clear                        → delete all comments
+//   comments                             → show all comments
+//   chnge code to date=N                 → revert page to commit by date
+//   chnge code to var=N                  → revert page to commit by var number
+//   commit sv / commit save              → save current state as a new commit
+//   commit nw / commit now               → save with auto date
+//   commit log                           → show all commits
 // ===================================================================================
 
 function getSnapshotKey(date) {
@@ -159,8 +159,16 @@ function runCommand(input) {
     return output;
   }
 
-  if (cmd === "commit save" || cmd === "commit now") {
-    let label = cmd === "commit now" ? "auto commit" : "manual commit";
+  if (
+    cmd === "commit save" ||
+    cmd === "commit sv" ||
+    cmd === "commit now" ||
+    cmd === "commit nw"
+  ) {
+    let label =
+      cmd === "commit now" || cmd === "commit nw"
+        ? "auto commit"
+        : "manual commit";
     let commit = saveCommit(label);
     output = "Svd! var:" + commit.var + " | " + commit.date + " " + commit.time;
     return output;
@@ -266,11 +274,16 @@ function runCommand(input) {
   }
 
   // terminal / turmux / terminator — show command man
-  if (cmd === "man") {
+  if (
+    cmd === "man" ||
+    cmd === "turmux" ||
+    cmd === "terminal" ||
+    cmd === "terminator"
+  ) {
     output =
-      "Man — Command Man\n" +
+      "Man/turmux/terminal/terminator — Command Man\n" +
       "========================\n" +
-      "terminal / turmux / terminator\n" +
+      "man/turmux/terminal/terminator\n" +
       "  → show this command man\n\n" +
       "chnge code to date=N\n" +
       "  → revert page to commit var:N\n\n" +

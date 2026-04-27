@@ -46,6 +46,10 @@ body {
     background-color: rgb(0, 255, 0);
     color: rgb(0, 0, 255);
     font-family: cursive;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
 }
 
 /*wild to nit!*/
@@ -70,6 +74,26 @@ body {
 
 #cat {
     margin-bottom: 42px;
+    background-color: rgb(0, 0, 255);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/*ct tree img*/
+
+#ct-tree {
+    background-color: rgb(0, 0, 255);
+    padding: 12px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+#ct-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /*<!--//...!-->*/
@@ -303,7 +327,8 @@ body {
 }
 
 #login-user,
-#login-pass {
+#login-pass,
+#login-email {
     width: 100%;
     padding: 12px 14px;
     font-size: 17px;
@@ -320,7 +345,8 @@ body {
 }
 
 #login-user:focus,
-#login-pass:focus {
+#login-pass:focus,
+#login-email:focus {
     transform: scale(1.03);
     box-shadow:
         0 0 14px rgba(255, 140, 66, 0.5),

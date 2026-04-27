@@ -6,28 +6,21 @@
     <!-- Hero Section -->
     <header class="card card-hero">
       <h1 id="welcom" aria-label="Welcome"><span class="sr-only">Loading...</span></h1>
-      <h1 id="cat">cats!</h1>
-      <img
-        src="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/animals/cat.png"
-        width="425"
-        alt="ct tree img"
-      >
-      <span id="wild">wild cat!</span>
+      <h1 id="cat">cats!</h1><br>
+      <!--bootin-->
+      <button id="ton" aria-label="Ton action">ton</button><br>
+      <!--img-->
+      <p id="ct-tree">
+        <img
+          id="ct-img"
+          src="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/animals/cat.png"
+          width="425"
+          alt="ct tree img"
+        >
+        <span id="wild">wild cat!</span>
+      </p>
     </header>
 
-    <!-- Email Signup -->
-    <section class="card card-email" aria-label="Email signup">
-      <h3 class="card-email-title">🐾 get cat updates!</h3>
-      <p class="card-email-sub">leave your email and we'll keep you posted</p>
-      <%= form_with model: UserEmail.new, url: user_emails_path, local: false, class: "email-form", html: { data: { turbo: "false" } } do |f| %>
-        <%= f.hidden_field :username, id: "email-username" %>
-        <div class="email-form-row">
-          <%= f.email_field :email, placeholder: "your email...", autocomplete: "email", id: "email-input", required: true %>
-          <%= f.submit "sv 🐾", class: "email-submit-btn" %>
-        </div>
-        <p id="email-msg"></p>
-      <% end %>
-    </section>
 
     <!-- Note Input -->
     <section class="card card-note" aria-label="Note input">
@@ -42,10 +35,8 @@
     <!-- Actions Toolbar -->
     <nav class="card card-actions" aria-label="Page actions">
       <!-- boottin !-->
-      <button id="ton" aria-label="Ton action">ton</button>
       <!-- sound -->
       <button id="reader" aria-label="Read aloud">read for me</button>
-      <button id="help" aria-label="Help">?</button>
     </nav>
 
     <!-- Facts Section -->
@@ -68,7 +59,7 @@
         <option id="rat" value="rat">rat</option>
         <option id="bird" value="bird">feather</option>
         <option id="laser" value="laser">laser</option>
-      </select>
+      </select><br>
       <!--img-->
       <img
         src="https://imgs.search.brave.com/MFR2dtplD4WReIGtOCbt0FSAQYT9WRp_ShFvOXDgTqA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMucGV4ZWxzLmNv/bS9waG90b3MvMTQw/NDU1NjIvcGV4ZWxz/LXBob3RvLTE0MDQ1/NTYyLmpwZWc_YXV0/bz1jb21wcmVzcyZj/cz10aW55c3JnYiZk/cHI9MSZ3PTUwMA"
@@ -83,7 +74,6 @@
       <!-- link -->
       <a href="https://www.britannica.com/animal/cat"><span id="history">cats history</span></a>
       <!-- link -->
-      <a href="https://en.wikipedia.org/wiki/Wildlife"><span id="plant">Wildness</span></a>
     </section>
 
     <!-- Warnings -->
@@ -94,6 +84,8 @@
       </h2>
       <h2 class="warning">or else they will pee on you</h2>
     </section>
+      <a href="https://en.wikipedia.org/wiki/Wildlife"><span id="plant">Wildness</span></a>
+      <button id="help" aria-label="Help">?</button>
 
     <!-- Power Command -->
     <footer class="card card-power" aria-label="Power command">
@@ -132,9 +124,7 @@
         }
 
         // Fill hidden email-username field so it gets submitted with the form
-        // Fill hidden email-username field and init email form (see email-ct.js)
-        fillEmailUsername(username);
-        initEmailForm();
+
 
         // Initialize the power commit system
         initPower();

@@ -40,6 +40,10 @@ Kep this man handy so you don't forget!
 - Wwt no more — sv this man and ed it anytime!
 - Sm shorthands save sm time!
 
+## Project Rules
+
+- **Always commit before making any changes** — mak a git commit first so you can always go back. No exceptions!
+
 ## Total: 21 Shorthands
 
 ## Commit Log
