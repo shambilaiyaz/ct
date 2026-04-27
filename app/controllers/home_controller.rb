@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   def login
   end
 
-  # def inter_type
-  # render 'home/inter_type'
-  # end
+  def inter_type
+    render 'home/inter_type'
+  end
 end

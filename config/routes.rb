@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'home#login'
   # root: takes you to login
   get '/index', to: 'home#index', as: 'home'
-  # get '/interType', to: 'home#inter_type', as: 'interType'
+  get '/interType', to: 'home#inter_type', as: 'interType'
   resources :user_emails, only: [:create]
   # pressing enter in login takes to index
   #
