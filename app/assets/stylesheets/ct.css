@@ -3,6 +3,186 @@
  * Styles declared later override earlier ones depending on specificity.
  */
 
+/* ===================================================================================
+// JOSH COMEAU-STYLE DELIGHTFUL ANIMATIONS 🐱
+// Spring physics, shimmer, sparkle, bouncy micro-interactions
+// =================================================================================== */
+
+/* Spring easing — feels natural and bouncy */
+@keyframes springIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes springBounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-8px);
+    }
+    40% {
+        transform: translateY(-4px);
+    }
+    60% {
+        transform: translateY(-2px);
+    }
+    80% {
+        transform: translateY(-1px);
+    }
+}
+
+/* Shimmer sweep effect */
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Playful wiggle on attention */
+@keyframes joshWiggle {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(-5deg);
+    }
+    30% {
+        transform: rotate(4deg);
+    }
+    45% {
+        transform: rotate(-3deg);
+    }
+    60% {
+        transform: rotate(2deg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+
+/* Float up like a bubble */
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pulse glow — subtle and delightful */
+@keyframes pulseGlow {
+    0%,
+    100% {
+        box-shadow: 0 0 8px rgba(255, 140, 66, 0.3);
+    }
+    50% {
+        box-shadow:
+            0 0 24px rgba(255, 140, 66, 0.6),
+            0 0 48px rgba(255, 60, 127, 0.2);
+    }
+}
+
+/* Sparkle pop */
+@keyframes sparklePop {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.3) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+/* Staggered fade in for cards */
+@keyframes staggerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Spring transition utility — apply to interactive elements */
+.spring-hover {
+    transition:
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+}
+
+.spring-hover:hover {
+    transform: scale(1.06) translateY(-2px);
+}
+
+.spring-hover:active {
+    transform: scale(0.94);
+    transition-duration: 0.1s;
+}
+
+/* Shimmer text effect */
+.shimmer-text {
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+
+/* Staggered card animations */
+.card {
+    animation: staggerFadeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.card:nth-child(1) {
+    animation-delay: 0s;
+}
+.card:nth-child(2) {
+    animation-delay: 0.06s;
+}
+.card:nth-child(3) {
+    animation-delay: 0.12s;
+}
+.card:nth-child(4) {
+    animation-delay: 0.18s;
+}
+.card:nth-child(5) {
+    animation-delay: 0.24s;
+}
+.card:nth-child(6) {
+    animation-delay: 0.3s;
+}
+.card:nth-child(7) {
+    animation-delay: 0.36s;
+}
+.card:nth-child(8) {
+    animation-delay: 0.42s;
+}
+
 h1 {
     color: rgb(255, 0, 0);
 }
@@ -38,6 +218,12 @@ body {
     color: rgb(255, 0, 0);
     font-family: inherit;
     font-weight: bold;
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#plant:hover {
+    transform: scale(1.08) translateY(-2px);
 }
 
 /*plant to wild*/
@@ -50,6 +236,12 @@ body {
     padding: 4px 10px;
     border-radius: 6px;
     display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: joshWiggle 4s ease-in-out infinite;
+}
+
+#wild:hover {
+    transform: scale(1.2) rotate(-5deg);
 }
 
 /*wild to nit!*/
@@ -58,6 +250,13 @@ body {
     color: rgb(100, 250, 255);
     background-color: rgb(0, 0, 0);
     font-style: italic;
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#nit:hover {
+    transform: scale(1.15) translateY(-3px);
+    text-shadow: 0 0 12px rgba(100, 250, 255, 0.8);
 }
 
 /*nit to history*/
@@ -68,6 +267,12 @@ body {
     font-family: inherit;
     font-weight: bold;
     text-decoration: blink;
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#history:hover {
+    transform: scale(1.08) translateY(-2px);
 }
 
 /*history to cat*/
@@ -79,6 +284,12 @@ body {
     padding: 8px 16px;
     border-radius: 8px;
     display: inline-block;
+    animation: springBounce 2s ease-in-out infinite;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#cat:hover {
+    transform: scale(1.15) rotate(-3deg);
 }
 
 /*ct tree img*/
@@ -127,6 +338,21 @@ body {
     border-width: bold;
     border-color: lawngreen;
     outline: double;
+    cursor: pointer;
+    transition:
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+    animation: springBounce 3s ease-in-out infinite;
+}
+
+#ton:hover {
+    transform: scale(1.2) rotate(-5deg);
+    box-shadow: 0 0 24px rgba(255, 0, 255, 0.6);
+}
+
+#ton:active {
+    transform: scale(0.85) rotate(5deg);
+    transition-duration: 0.1s;
 }
 
 /*ton to reader*/
@@ -138,6 +364,20 @@ body {
     color: blue;
     text-decoration: underline;
     border: solid crimson;
+    cursor: pointer;
+    transition:
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+}
+
+#reader:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 255, 0.4);
+}
+
+#reader:active {
+    transform: scale(0.92);
+    transition-duration: 0.1s;
 }
 
 /*reader to WARNING*/
@@ -146,6 +386,12 @@ body {
     background-color: yellow;
     color: crimson;
     font-family: fantasy;
+    animation: joshWiggle 3s ease-in-out infinite;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.warning:hover {
+    transform: scale(1.05) translateY(-2px);
 }
 
 /*WARNING to ful-page*/
@@ -167,6 +413,20 @@ body {
     padding: 12px 24px;
     border-radius: 8px;
     cursor: pointer;
+    transition:
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+#help:hover {
+    transform: scale(1.12) rotate(8deg);
+    box-shadow: 0 0 30px rgba(255, 60, 127, 0.5);
+}
+
+#help:active {
+    transform: scale(0.88) rotate(-8deg);
+    transition-duration: 0.1s;
 }
 
 /* sr-only helper for accessibility */
@@ -508,6 +768,18 @@ body {
     border-radius: 4px;
     background-color: #111;
     color: lawngreen;
+    transition:
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+#power-input:focus {
+    transform: scale(1.03);
+    box-shadow:
+        0 0 16px rgba(124, 252, 0, 0.5),
+        0 0 32px rgba(124, 252, 0, 0.2);
+    border-color: #4caf50;
 }
 
 #power-btn {
@@ -520,11 +792,22 @@ body {
     border-radius: 4px;
     cursor: pointer;
     margin-left: 6px;
+    transition:
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background-color 0.2s ease,
+        box-shadow 0.3s ease;
 }
 
 #power-btn:hover {
     background-color: lawngreen;
     border-color: lawngreen;
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 252, 0, 0.5);
+}
+
+#power-btn:active {
+    transform: scale(0.9);
+    transition-duration: 0.1s;
 }
 
 #power-output {
