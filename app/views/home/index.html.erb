@@ -7,6 +7,8 @@
     <header class="card card-hero">
       <h1 id="welcom" aria-label="Welcome"><span class="sr-only">Loading...</span></h1>
       <h1 id="cat">cats!</h1><br>
+      <!--logo-->
+      <img id="helper" src="<%= asset_path('logo.svg') %>" alt="ct web logo" width="236" height="236" style="border-radius: 16px; margin: 8px auto; display: block;">
       <!--bootin-->
       <button id="ton" aria-label="Ton action">ton</button><br>
       <!--img-->
@@ -73,6 +75,7 @@
     <section class="card card-links" aria-label="External links">
       <!-- link -->
       <a href="https://www.britannica.com/animal/cat"><span id="history">cats history</span></a>
+      <a href="https://en.wikipedia.org/wiki/Wildlife"><span id="plant">Wildness</span></a>
       <!-- link -->
     </section>
 
@@ -84,7 +87,6 @@
       </h2>
       <h2 class="warning">or else they will pee on you</h2>
     </section>
-      <a href="https://en.wikipedia.org/wiki/Wildlife"><span id="plant">Wildness</span></a>
       <button id="help" aria-label="Help">?</button>
 
     <!-- Power Command -->
@@ -104,7 +106,7 @@
     </footer>
 
     <!-- interType link -->
-    <button id="inter_type-btn" onclick="window.location.href='/interType'">63 interType 🤖</button>
+    <button id="inter_type-btn" onclick="window.location.href='/interType'"><img src="<%= asset_path('logo.svg') %>" alt="logo"></button>
 
     <!-- Logout -->
     <footer class="card-footer-logout">

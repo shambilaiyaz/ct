@@ -8,7 +8,12 @@
 
 #interType-page {
     min-height: 100vh;
-    background: radial-gradient(ellipse at top, #fff5e6 0%, #ffe0b2 40%, #ffb3b3 100%);
+    background: radial-gradient(
+        ellipse at top,
+        #fff5e6 0%,
+        #ffe0b2 40%,
+        #ffb3b3 100%
+    );
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -43,7 +48,9 @@
     padding: 4px 10px;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.7);
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
     white-space: nowrap;
 }
 
@@ -66,8 +73,13 @@
 }
 
 @keyframes titleGradient {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .interType-paws {
@@ -76,9 +88,16 @@
 }
 
 @keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-8deg); }
-    75% { transform: rotate(8deg); }
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-8deg);
+    }
+    75% {
+        transform: rotate(8deg);
+    }
 }
 
 /* chat panel */
@@ -120,8 +139,14 @@
 }
 
 @keyframes msgFadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .interType-msg p {
@@ -180,13 +205,18 @@
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.9);
     outline: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
     box-sizing: border-box;
 }
 
 .interType-input:focus {
     transform: scale(1.02);
-    box-shadow: 0 0 14px rgba(255, 140, 66, 0.5), 0 0 28px rgba(255, 60, 127, 0.2);
+    box-shadow:
+        0 0 14px rgba(255, 140, 66, 0.5),
+        0 0 28px rgba(255, 60, 127, 0.2);
     border-color: #ff3c7f;
 }
 
@@ -206,13 +236,17 @@
     border-radius: 12px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(255, 60, 127, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
     animation: titleGradient 4s ease-in-out infinite;
 }
 
 .interType-send-btn:hover {
     transform: scale(1.07);
-    box-shadow: 0 6px 24px rgba(255, 60, 127, 0.6), 0 0 40px rgba(255, 107, 107, 0.3);
+    box-shadow:
+        0 6px 24px rgba(255, 60, 127, 0.6),
+        0 0 40px rgba(255, 107, 107, 0.3);
 }
 
 .interType-send-btn:active {
@@ -275,4 +309,37 @@
 
 .interType-knows li {
     margin-bottom: 2px;
+}
+
+/* interType button */
+
+#inter_type-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #6c5ce7, #a855f7, #ff3c7f);
+    background-size: 200% 200%;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    animation: titleGradient 4s ease-in-out infinite;
+}
+
+#inter_type-btn:hover {
+    transform: scale(1.07);
+    box-shadow:
+        0 6px 24px rgba(168, 85, 247, 0.6),
+        0 0 40px rgba(108, 92, 231, 0.3);
+}
+
+#inter_type-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
 }

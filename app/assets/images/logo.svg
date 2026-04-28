@@ -1,0 +1,51 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+
+  <rect width="100%" height="100%" fill="#f0e6f0" opacity="0.9"/>
+  <path d="M0,0 L200,200" stroke="#4caf50" stroke-width="1" fill="none"/>
+
+  <!-- Stars -->
+  <circle cx="15" cy="12" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="50" cy="8" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="155" cy="15" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="185" cy="30" r="1" fill="#fff" opacity="0.5"/>
+  <circle cx="170" cy="55" r="1.5" fill="#fff" opacity="0.9"/>
+  <circle cx="25" cy="45" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="8" cy="75" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="42" cy="28" r="1" fill="#fff" opacity="0.5"/>
+  <circle cx="190" cy="90" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="30" cy="150" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="175" cy="145" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="60" cy="170" r="1" fill="#fff" opacity="0.5"/>
+  <circle cx="140" cy="175" r="1.5" fill="#fff" opacity="0.9"/>
+  <circle cx="10" cy="190" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="185" cy="185" r="1" fill="#fff" opacity="0.8"/>
+  <circle cx="95" cy="22" r="1" fill="#fff" opacity="0.5"/>
+
+  <!-- Laptop base (keyboard) -->
+  <path d="M65,120 L75,135 L125,135 L135,120 Z" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+  <!-- Keyboard surface detail -->
+  <rect x="80" y="122" width="40" height="8" rx="1" fill="#3a3a3a"/>
+  <!-- Trackpad -->
+  <rect x="92" y="131" width="16" height="3" rx="1" fill="#333"/>
+
+  <!-- Laptop screen (lid) -->
+  <path d="M70,120 L75,72 L125,72 L130,120 Z" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="0.5"/>
+  <!-- Screen display area -->
+  <path d="M78,116 L82,78 L118,78 L122,116 Z" fill="#000000"/>
+  <!-- Screen glow -->
+  <rect x="84" y="82" width="32" height="30" rx="1" fill="#001a00" opacity="0.5"/>
+
+  <!-- Code lines on screen -->
+  <rect x="88" y="86" width="18" height="2" fill="#4caf50" opacity="0.8"/>
+  <rect x="88" y="91" width="24" height="2" fill="#4caf50" opacity="0.6"/>
+  <rect x="88" y="96" width="12" height="2" fill="#4caf50" opacity="0.7"/>
+
+  <!-- 63 on screen (green) -->
+  <text x="100" y="112" font-family="'Courier New', monospace" font-size="14" fill="#4caf50" text-anchor="middle" font-weight="bold">63</text>
+
+  <!-- ct text (red) -->
+  <text x="98" y="65" font-family="Arial" font-size="16" fill="#FF0000" text-anchor="middle">ct</text>
+
+  <!-- interType text (blue) -->
+  <text x="100" y="40" font-family="Arial" font-size="34" fill="#0000FF" text-anchor="middle">interType</text>
+</svg>
