@@ -4,6 +4,21 @@
 // Extracted from inter_type.html.erb inline styles for modular organization.
 // =================================================================================== */
 
+/* interType logo */
+
+.interType-logo-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0 8px;
+}
+
+.interType-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(255, 140, 66, 0.4);
+}
+
 /* interType page */
 
 #interType-page {

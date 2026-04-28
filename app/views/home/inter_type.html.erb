@@ -14,6 +14,10 @@
 
       <!-- Messages Area -->
       <div id="interType-chat" class="interType-messages">
+        <!-- Logo centered in chat -->
+        <div class="interType-logo-wrap">
+          <img src="<%= asset_path('inter_type_logo.svg') %>" alt="63 interType logo" class="interType-logo">
+        </div>
         <div class="interType-msg interType-bot">
           <p>Meow! 😺 I'm 63 interType, your ct-web AI assistant. Ask me anything about the project!</p>
         </div>
@@ -26,7 +30,7 @@
           type="text"
           id="interType-input"
           class="interType-input"
-          placeholder="ask the cat AI something..."
+          placeholder="ask the interType something..."
           autocomplete="off"
         >
         <button type="submit" id="interType-send" class="interType-send-btn" aria-label="Send message">&#10148;</button>

@@ -472,9 +472,13 @@ function interTypeRespond(userMessage) {
   ) {
     return "why did the cat sit on the computer? 🐱 Because it wanted to keep an eye on the mouse! 😼 But seriously, I only know about ct-web — want to hear about its features? 🐾";
   }
-  // last talk
-  if ((msg, ["thanks"])) {
-    return "your very very welcome";
+  // ?
+  if (matchesAny(msg, ["do you know about the options"])) {
+    return "hmm do you mean the option below the blue lines?";
+  }
+  // ANS
+  if (matchesAny(msg, ["yes under the blue lines", "yes what are those"])) {
+    return "yea so those, press it then choose something to press and then you will see some magic!";
   }
   // --- Default fallback ---
   return "I only know about the ct-web project! Ask me about its features, files, or how it works 🐱";
