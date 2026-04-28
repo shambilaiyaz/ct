@@ -113,7 +113,31 @@
       <a href="/" id="logout-link">logout</a>
     </footer>
 
-  </main>
-</div>
+    <!-- Agent Toggle Button (floating) -->
+    <button id="agent-toggle-btn" class="agent-toggle-btn" aria-label="Open agent panel">🐱</button>
 
-<!-- /ct -->
+    </main>
+
+    <!-- Agent Panel -->
+    <aside id="agent-panel" class="agent-panel" aria-label="Agent panel">
+      <div class="agent-panel-header">
+        <h2 class="agent-panel-title">🐱 agent</h2>
+        <button id="agent-close-btn" class="agent-close-btn" aria-label="Close agent panel">✕</button>
+      </div>
+      <div class="agent-panel-body">
+        <button class="agent-bootin" data-action="ton">🐾 ton</button>
+        <button class="agent-bootin" data-action="note">📝 note</button>
+        <button class="agent-bootin" data-action="screenreader">🔊 screenreader</button>
+        <button class="agent-bootin" data-action="magic">✨ magic option</button>
+        <button class="agent-bootin" data-action="link">🔗 link</button>
+        <button class="agent-bootin" data-action="keymap">⌨️ keymap</button>
+        <button class="agent-bootin" data-action="terminal">💻 terminal</button>
+        <button class="agent-bootin" data-action="chat">💬 main AI chat</button>
+        <button class="agent-bootin" data-action="logout">🚪 logout</button>
+      </div>
+      <div id="agent-output" class="agent-output"></div>
+    </aside>
+
+  </div>
+
+  <!-- /ct -->

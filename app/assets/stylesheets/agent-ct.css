@@ -1,0 +1,213 @@
+/* AGENT-CT — Agent panel styles
+// ===================================================================================
+// Styles for the inline agent panel on the index page.
+// Right-side panel with 9 bootins and output area.
+// Ctrl+Alt+P opens it.
+// =================================================================================== */
+
+/* agent panel container */
+
+.agent-panel {
+    position: fixed;
+    top: 0;
+    right: -340px;
+    width: 320px;
+    height: 100vh;
+    background: linear-gradient(180deg, #1a0a2e 0%, #0d0015 100%);
+    border-left: 3px solid #ff8c42;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.35s ease;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
+}
+
+.agent-panel.open {
+    right: 0;
+}
+
+/* agent panel header */
+
+.agent-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 3px solid #ff8c42;
+    flex-shrink: 0;
+}
+
+.agent-panel-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff8c42;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.agent-close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff8c42;
+    background: none;
+    border: 2px solid #ff8c42;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 2px 10px;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.agent-close-btn:hover {
+    background: #ff8c42;
+    color: #1a0a2e;
+}
+
+/* agent panel body (bootins) */
+
+.agent-panel-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+/* agent bootin */
+
+.agent-bootin {
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #2a1a4e, #1a0a2e);
+    border: 2px solid #ff8c42;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.agent-bootin:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 16px rgba(255, 140, 66, 0.4);
+    border-color: #ff3c7f;
+}
+
+.agent-bootin:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(255, 60, 127, 0.3);
+}
+
+/* agent output area */
+
+.agent-output {
+    flex: 1;
+    padding: 12px 14px;
+    margin: 0 14px 14px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #4caf50;
+    border-radius: 12px;
+    color: #4caf50;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    min-height: 60px;
+}
+
+.agent-output:empty::before {
+    content: "click a bootin to see output here 🐱";
+    color: #666;
+    font-style: italic;
+}
+
+/* agent output scrollbar */
+
+.agent-output::-webkit-scrollbar {
+    width: 6px;
+}
+
+.agent-output::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+
+.agent-output::-webkit-scrollbar-thumb {
+    background: #4caf50;
+    border-radius: 3px;
+}
+
+/* agent toggle button (floating) */
+
+.agent-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid #ff8c42;
+    background: linear-gradient(135deg, #1a0a2e, #2a1a4e);
+    color: #ff8c42;
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(255, 140, 66, 0.5);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+}
+
+.agent-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(255, 60, 127, 0.6);
+}
+
+.agent-toggle-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 10px rgba(255, 140, 66, 0.4);
+}
+
+.agent-panel.open ~ .agent-toggle-btn,
+.agent-toggle-btn.hidden {
+    display: none;
+}
+
+/* mobile responsive */
+
+@media (max-width: 600px) {
+    .agent-panel {
+        width: 280px;
+        right: -300px;
+    }
+
+    .agent-bootin {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    .agent-output {
+        font-size: 13px;
+    }
+
+    .agent-toggle-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        bottom: 16px;
+        right: 16px;
+    }
+}
