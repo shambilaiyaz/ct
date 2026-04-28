@@ -179,51 +179,67 @@ function runCommand(input) {
     return output;
   }
 
-  // comment delete <N> — delete a specific comment (only your own)
+  // comment delete <N> — delete a specific comment via SQLite
   let commentDeleteMatch = cmd.match(/^comment delete (\d+)$/);
   if (commentDeleteMatch) {
     let num = parseInt(commentDeleteMatch[1], 10);
-    let comments = JSON.parse(localStorage.getItem("ct_comments") || "[]");
-    let currentUser = sessionStorage.getItem("ct_username") || "anonymous";
-    if (num < 1 || num > comments.length) {
-      output =
-        "Comment #" +
-        num +
-        " not found. There are " +
-        comments.length +
-        " comments.";
-    } else {
-      let target = comments[num - 1];
-      if (target.user !== currentUser) {
-        output =
-          "you can only delete your own comments! comment #" +
-          num +
-          " belongs to " +
-          target.user;
+    let csrfToken = document.querySelector('meta[name="csrf-token"]');
+    let csrfValue = csrfToken ? csrfToken.getAttribute("content") : "";
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "/comments/" + num, false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    if (csrfValue) xhr.setRequestHeader("X-CSRF-Token", csrfValue);
+    try {
+      xhr.send();
+      if (xhr.status === 200) {
+        let data = JSON.parse(xhr.responseText);
+        output = data.message || "Comment deleted!";
+      } else if (xhr.status === 404) {
+        output = "Comment #" + num + " not found.";
       } else {
-        let removed = comments.splice(num - 1, 1)[0];
-        localStorage.setItem("ct_comments", JSON.stringify(comments));
-        output = "Deleted comment #" + num + ': "' + removed.text + '"';
+        let data = JSON.parse(xhr.responseText);
+        output = data.errors
+          ? data.errors.join(", ")
+          : "Error deleting comment.";
       }
+    } catch (e) {
+      output = "Network error deleting comment.";
     }
     return output;
   }
 
-  // comment clear — delete all comments (requires password)
+  // comment clear — delete all comments via SQLite
   if (cmd === "comment clear") {
     let password = prompt("enter password to clear all comments:");
     if (password !== "@sqwerty") {
       output = "wrong password! comments not cleared.";
       return output;
     }
-    let comments = JSON.parse(localStorage.getItem("ct_comments") || "[]");
-    let count = comments.length;
-    localStorage.removeItem("ct_comments");
-    output = "Cleared " + count + " comment" + (count !== 1 ? "s" : "") + "!";
+    let csrfToken = document.querySelector('meta[name="csrf-token"]');
+    let csrfValue = csrfToken ? csrfToken.getAttribute("content") : "";
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "/comments/clear", false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    if (csrfValue) xhr.setRequestHeader("X-CSRF-Token", csrfValue);
+    try {
+      xhr.send();
+      if (xhr.status === 200) {
+        let data = JSON.parse(xhr.responseText);
+        output = data.message || "Comments cleared!";
+      } else {
+        output = "Error clearing comments.";
+      }
+    } catch (e) {
+      output = "Network error clearing comments.";
+    }
     return output;
   }
 
-  // comment <text> — save a user comment
+  // comment <text> — save a user comment to SQLite
   let commentMatch = cmd.match(/^comment\s+(.+)/);
   if (commentMatch) {
     let text = input.trim().replace(/^comment\s+/i, "");
@@ -232,43 +248,69 @@ function runCommand(input) {
     let dateStr = now.toISOString().split("T")[0];
     let timeStr = now.toTimeString().split(" ")[0];
 
-    let comments = JSON.parse(localStorage.getItem("ct_comments") || "[]");
-    comments.push({
-      user: username,
-      text: text,
-      date: dateStr,
-      time: timeStr,
-    });
-    localStorage.setItem("ct_comments", JSON.stringify(comments));
-
-    output = "Comment svd! 🐾 thanks " + username + "!";
+    let csrfToken = document.querySelector('meta[name="csrf-token"]');
+    let csrfValue = csrfToken ? csrfToken.getAttribute("content") : "";
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/comments", false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    if (csrfValue) xhr.setRequestHeader("X-CSRF-Token", csrfValue);
+    try {
+      xhr.send(
+        JSON.stringify({
+          comment: { user: username, text: text, date: dateStr, time: timeStr },
+        }),
+      );
+      if (xhr.status === 201) {
+        let data = JSON.parse(xhr.responseText);
+        output = data.message || "Comment svd! 🐾";
+      } else {
+        let data = JSON.parse(xhr.responseText);
+        output = data.errors ? data.errors.join(", ") : "Error saving comment.";
+      }
+    } catch (e) {
+      output = "Network error saving comment.";
+    }
     return output;
   }
 
-  // comments — show all comments
+  // comments — show all comments from SQLite
   if (cmd === "comments") {
-    let comments = JSON.parse(localStorage.getItem("ct_comments") || "[]");
-    if (comments.length === 0) {
-      output = "No comments yet. Be the first! Use: comment <text>";
-    } else {
-      output = "COMMENTS\n========================\n";
-      for (let i = 0; i < comments.length; i++) {
-        output +=
-          i +
-          1 +
-          ". " +
-          comments[i].user +
-          " (" +
-          comments[i].date +
-          " " +
-          comments[i].time +
-          ")\n" +
-          '   "' +
-          comments[i].text +
-          '"\n\n';
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "/comments", false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Accept", "application/json");
+    try {
+      xhr.send();
+      if (xhr.status === 200) {
+        let comments = JSON.parse(xhr.responseText);
+        if (comments.length === 0) {
+          output = "No comments yet. Be the first! Use: comment <text>";
+        } else {
+          output = "COMMENTS\n========================\n";
+          for (let i = 0; i < comments.length; i++) {
+            output +=
+              comments[i].id +
+              ". " +
+              comments[i].user +
+              " (" +
+              comments[i].date +
+              " " +
+              comments[i].time +
+              ")\n" +
+              '   "' +
+              comments[i].text +
+              '"\n\n';
+          }
+          output +=
+            "========================\nTotal: " + comments.length + " comments";
+        }
+      } else {
+        output = "Error loading comments.";
       }
-      output +=
-        "========================\nTotal: " + comments.length + " comments";
+    } catch (e) {
+      output = "Network error loading comments.";
     }
     return output;
   }
