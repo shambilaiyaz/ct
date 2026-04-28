@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy, :clear]
 
   # GET /comments
   def index
