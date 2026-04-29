@@ -1,4 +1,4 @@
-/*
+ye a/*
  * This is a manifest file that'll be compiled into application.css via Propshaft.
  * Styles declared later override earlier ones depending on specificity.
  */
@@ -541,6 +541,29 @@ body {
 
 .card-links a:hover {
     transform: scale(1.06) translateY(-2px);
+}
+
+/* link checkbox items */
+
+.link-check-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.link-check {
+    width: 20px;
+    height: 20px;
+    accent-color: #ff3c7f;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.link-check-label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
 }
 
 /* toy selector image */
