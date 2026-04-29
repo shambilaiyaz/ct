@@ -330,7 +330,7 @@ body {
 /*<!--//...!-->*/
 
 #blue {
-    color: blue;
+    color: greenyellow;
     font-family: inherit;
     font-style: oblique;
     font-size: 22px;
@@ -380,6 +380,7 @@ body {
 /*ton to reader — accessible high-contrast style for visually impaired*/
 
 #reader {
+    background-color: rgb(0, 255, 0);
     font-size: 58px;
     font-family: monospace;
     font-weight: bold;
@@ -387,7 +388,6 @@ body {
     text-decoration: underline;
     border: solid crimson;
     cursor: pointer;
-    background: white;
     transition:
         transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
         box-shadow 0.3s ease;
