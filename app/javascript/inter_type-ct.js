@@ -264,7 +264,7 @@ function interTypeRespond(userMessage) {
   }
 
   if (matchesAny(msg, ["login.html", "login page", "login form"])) {
-    return 'login.html.erb is the login page! 🐱 It has:\n\n• Name input ("whats your name human?")\n• Email input ("whats your email?")\n• "I want to learn about cats" checkbox 😺\n• "remember my name" checkbox 🐾\n• "done" checkbox ✅\n• The enter button (disabled until checkboxes are checked)\n\nno paskey needed — the checkboxes confirm you\'re here to learn! 😼🐾';
+    return 'login.html.erb is the login page! 🐱 It has:\n\n• Name input ("whats your name human?")\n• Email input ("whats your email?")\n• "I want to learn about cats" checkbox 😺\n• "remember me" checkbox 🐾\n• "done" checkbox ✅\n• The enter button (disabled until checkboxes are checked)\n\nno paskey needed — the checkboxes confirm you\'re here to learn! 😼🐾';
   }
 
   if (matchesAny(msg, ["ct.js", "core logic", "core file"])) {
@@ -379,7 +379,7 @@ function interTypeRespond(userMessage) {
       "capabilities",
     ])
   ) {
-    return "here's what ct-web can do! 🐱\n\n1. 🔐 Login with checkboxes (just confirm you're here to learn!)\n2. ⌨️ Keyboard shortcuts (T, V, 1-4, H, W, N, ?)\n3. 🐱 Cat facts and toy selector\n4. 🔊 Text-to-speech reader\n5. 💻 Power command terminal (commit sv, commit log, comment, chnge code to var=N)\n6. 📧 Email signup saved to SQLite\n7. 📝 Remember username feature\n8. 🐾 Cat-themed everything!\n\nwant details on any feature? just ask! 😼";
+    return "here's what ct-web can do! 🐱\n\n1. 🔐 Login with checkboxes (just confirm you're here to learn!)\n2. ⌨️ Keyboard shortcuts (T, V, 1-4, H, W, N, ?)\n3. 🐱 Cat facts and toy selector\n4. 🔊 Text-to-speech reader\n5. 💻 Power command terminal (commit sv, commit log, comment, chnge code to var=N)\n6. 📧 Email signup saved to SQLite\n7. 📝 Remember me feature\n8. 🐾 Cat-themed everything!\n\nwant details on any feature? just ask! 😼";
   }
 
   // --- Cat facts ---
@@ -418,7 +418,7 @@ function interTypeRespond(userMessage) {
 
   // --- Remember username ---
   if (matchesAny(msg, ["remember", "username", "remember me", "save name"])) {
-    return 'ct-web has a "remember my name" feature! 🐱 When you check the "remember my name 🐾" checkbox on login, your username and email get saved to localStorage. Next time you visit, they\'re pre-filled! The checkboxes also auto-check so you can log in faster! 🐾';
+    return 'ct-web has a "remember me" feature! 🐱 When you check the "remember me 🐾" checkbox on login, your username and email get saved to localStorage. Next time you visit, they\'re pre-filled! The checkboxes also auto-check so you can log in faster! 🐾';
   }
 
   // --- Thank you ---
@@ -452,7 +452,7 @@ function interTypeRespond(userMessage) {
       "options",
     ])
   ) {
-    return "I can help you with ct-web! 🐱 Try asking about:\n\n• project name / what is this\n• tech stack / built with\n• files / file structure\n• features / what can it do\n• login / how to log in\n• keyboard shortcuts\n• power commands / terminal\n• shorthand / vocabulary\n• specific files (ct.js, sound-ct.js, etc.)\n• cat facts\n• deployment\n• remember username\n\nno paskeys here — checkboxes are the gatekeeper! 😼🐾";
+    return "I can help you with ct-web! 🐱 Try asking about:\n\n• project name / what is this\n• tech stack / built with\n• files / file structure\n• features / what can it do\n• login / how to log in\n• keyboard shortcuts\n• power commands / terminal\n• shorthand / vocabulary\n• specific files (ct.js, sound-ct.js, etc.)\n• cat facts\n• deployment\n• remember me\n\nno paskeys here — checkboxes are the gatekeeper! 😼🐾";
   }
 
   // --- Cat-related fun ---
