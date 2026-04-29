@@ -73,13 +73,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  var loginPass = document.getElementById("login-pass");
-  if (loginPass) {
-    loginPass.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        submitLogin();
-      }
-    });
-  }
 });

@@ -882,7 +882,6 @@ body {
 }
 
 #login-user,
-#login-pass,
 #login-email {
     width: 100%;
     padding: 12px 14px;
@@ -900,7 +899,6 @@ body {
 }
 
 #login-user:focus,
-#login-pass:focus,
 #login-email:focus {
     transform: scale(1.03);
     box-shadow:

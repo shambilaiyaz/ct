@@ -149,7 +149,6 @@
 }
 
 #login-user,
-#login-pass,
 #login-email {
     width: 100%;
     padding: 12px 14px;
@@ -167,7 +166,6 @@
 }
 
 #login-user:focus,
-#login-pass:focus,
 #login-email:focus {
     transform: scale(1.03);
     box-shadow:
@@ -309,4 +307,22 @@
     font-style: italic;
     color: #b3836e;
     margin-top: 16px;
+}
+
+/*logout link*/
+
+#logout-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: crimson;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+#logout-link:hover {
+    background-color: darkred;
 }

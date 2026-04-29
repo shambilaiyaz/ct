@@ -60,11 +60,7 @@ document.addEventListener("keydown", function (e) {
       submitLogin();
       return;
     }
-    if (focused && focused.id === "login-pass") {
-      e.preventDefault();
-      submitLogin();
-      return;
-    }
+
     if (focused && focused.id === "power-input") {
       e.preventDefault();
       handlePowerCommand();

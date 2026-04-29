@@ -40,7 +40,6 @@ function submitLogin() {
   var email = document.getElementById("login-email")
     ? document.getElementById("login-email").value.trim()
     : "";
-  var paskey = document.getElementById("login-pass").value.trim();
   var errorEl = document.getElementById("login-error");
 
   if (!username) {
@@ -63,17 +62,12 @@ function submitLogin() {
     return;
   }
 
-  if (paskey === "Yes") {
-    sessionStorage.setItem("ct_username", username);
-    sessionStorage.setItem("ct_email", email);
-    handleRemember(username, email);
-    // Save email to database via AJAX (see data-ct.js)
-    saveEmailFromLogin(email, username);
-    window.location.href = "/index";
-  } else {
-    errorEl.textContent =
-      "are you here to learn about cats? type Yes to enter!";
-  }
+  sessionStorage.setItem("ct_username", username);
+  sessionStorage.setItem("ct_email", email);
+  handleRemember(username, email);
+  // Save email to database via AJAX (see data-ct.js)
+  saveEmailFromLogin(email, username);
+  window.location.href = "/index";
 }
 
 // saveEmailToDb moved to data-ct.js — now called saveEmailFromLogin()
@@ -107,15 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var loginUser = document.getElementById("login-user");
   if (loginUser) {
     loginUser.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        submitLogin();
-      }
-    });
-  }
-  var loginPass = document.getElementById("login-pass");
-  if (loginPass) {
-    loginPass.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         e.preventDefault();
         submitLogin();

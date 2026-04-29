@@ -1,7 +1,7 @@
 // inter_type-ct.js — 63 interType AI Assistant (rebuilt)
 // ===================================================================================
 // Fixed knowledge base AI that only knows about the ct-web project.
-// Never reveals passwords/paskeys/secrets — gives hints instead.
+// Never reveals passwords or secrets — checkboxes handle access now!
 // ===================================================================================
 
 // --- Knowledge base ---
@@ -68,8 +68,9 @@ var FILE_INFO = {
   "index.html.erb":
     "main page with cat facts, toy selector, images, notes, and power command terminal",
   "login.html.erb":
-    "login page with name, email, and paskey inputs plus checkboxes",
-  "ct.js": "core login logic — checkAccess() and Login() functions",
+    "login page with name, email, and checkboxes (no paskey needed — checkboxes confirm you're here to learn!)",
+  "ct.js":
+    "core login logic — Login() function (checkAccess removed, checkboxes handle access now)",
   "keymap-ct.js": "keyboard shortcuts — T, V, 1-4, H, W, N, ?",
   "sound-ct.js": "text-to-speech reader using Web Speech API",
   "act-ct.js": "image switcher for the toy selector dropdown",
@@ -118,24 +119,17 @@ function interTypeRespond(userMessage) {
   ) {
     return "that's a terminal run command ~man first it's gonn'a teach you what commands are functioning here, and if you don't no what those other things does than tap on it or fell free to ask";
   }
-  // --- Secret/password/paskey blocking (always check first!) ---
+  // --- Secret/password blocking (always check first!) ---
   if (
     matchesAny(msg, [
       "password",
-      "paskey",
-      "pass key",
       "secret",
-      "what is the paskey",
-      "what's the paskey",
-      "tell me the paskey",
-      "give me the paskey",
-      "reveal the paskey",
       "login code",
       "access code",
       "enter code",
     ])
   ) {
-    return "nice try! 😼 I never reveal paskeys or secrets. But here's a hint: what are you here to learn about? 🐾";
+    return "nice try! 😼 ct-web doesn't use passwords or paskeys anymore — the checkboxes confirm you're here to learn! 🐾";
   }
 
   // --- Greetings ---
@@ -224,7 +218,7 @@ function interTypeRespond(userMessage) {
     return "ct-web is deployed with: 🐱\n\n• Ruby on Rails 8.1 — the framework\n• SQLite — the database\n• Puma — the web server\n• Propshaft — asset pipeline\n• Docker — containerized deployment\n\nit's ready to deploy anywhere with Kamal! 🐾";
   }
 
-  // --- Login / paskey (give hint, never reveal) ---
+  // --- Login (checkboxes handle access) ---
   if (
     matchesAny(msg, [
       "login",
@@ -236,7 +230,7 @@ function interTypeRespond(userMessage) {
       "authenticate",
     ])
   ) {
-    return 'to log in to ct-web, you need to fill in your name, email, and the paskey! 🐱 You also need to check "I want to learn about cats" and "done" checkboxes. Hint for the paskey: what are you here to learn about? 😼🐾';
+    return 'to log in to ct-web, just fill in your name and email! 🐱 Then check "I want to learn about cats" and "done" checkboxes to enter the cat zone. No paskey needed — the checkboxes confirm you\'re here to learn! 😼🐾';
   }
 
   // --- Files / structure ---
@@ -270,11 +264,11 @@ function interTypeRespond(userMessage) {
   }
 
   if (matchesAny(msg, ["login.html", "login page", "login form"])) {
-    return 'login.html.erb is the login page! 🐱 It has:\n\n• Name input ("whats your name human?")\n• Email input ("whats your email?")\n• Paskey input ("are you here to learn about cats?")\n• "I want to learn about cats" checkbox 😺\n• "remember my name" checkbox 🐾\n• "done" checkbox ✅\n• The enter button (disabled until checkboxes are checked)\n\nand no, I won\'t tell you the paskey! 😼';
+    return 'login.html.erb is the login page! 🐱 It has:\n\n• Name input ("whats your name human?")\n• Email input ("whats your email?")\n• "I want to learn about cats" checkbox 😺\n• "remember my name" checkbox 🐾\n• "done" checkbox ✅\n• The enter button (disabled until checkboxes are checked)\n\nno paskey needed — the checkboxes confirm you\'re here to learn! 😼🐾';
   }
 
   if (matchesAny(msg, ["ct.js", "core logic", "core file"])) {
-    return "ct.js is the core login logic! 🐱 It has:\n\n• checkAccess() — the original access check (uses prompt)\n• Login() — opens the login overlay\n\nsubmitLogin() was moved to check_box-ct.js for better organization! 🐾";
+    return "ct.js is the core login logic! 🐱 It has:\n\n• Login() — opens the login overlay\n\ncheckAccess() was removed — checkboxes now handle access! submitLogin() lives in check_box-ct.js for better organization! 🐾";
   }
 
   // --- Keyboard shortcuts ---
@@ -341,7 +335,7 @@ function interTypeRespond(userMessage) {
       "login validation",
     ])
   ) {
-    return 'check_box-ct.js handles checkboxes and login validation! 🐱\n\n• isCatLearnChecked() — checks the "I want to learn about cats" box\n• isDoneChecked() — checks the "done" box\n• allRequiredChecked() — both must be checked to enable login\n• handleRemember() — saves/loads username & email to localStorage\n• submitLogin() — validates name, email, checkboxes, and paskey\n\nit keeps the cat zone secure! 😼🐾';
+    return 'check_box-ct.js handles checkboxes and login validation! 🐱\n\n• isCatLearnChecked() — checks the "I want to learn about cats" box\n• isDoneChecked() — checks the "done" box\n• allRequiredChecked() — both must be checked to enable login\n• handleRemember() — saves/loads username & email to localStorage\n• submitLogin() — validates name, email, and checkboxes\n\nthe checkboxes are the gatekeeper — no paskey needed! 😼🐾';
   }
 
   // --- Turmux ---
@@ -385,7 +379,7 @@ function interTypeRespond(userMessage) {
       "capabilities",
     ])
   ) {
-    return "here's what ct-web can do! 🐱\n\n1. 🔐 Login with paskey (hint: what are you here to learn about?)\n2. ⌨️ Keyboard shortcuts (T, V, 1-4, H, W, N, ?)\n3. 🐱 Cat facts and toy selector\n4. 🔊 Text-to-speech reader\n5. 💻 Power command terminal (commit sv, commit log, comment, chnge code to var=N)\n6. 📧 Email signup saved to SQLite\n7. 📝 Remember username feature\n8. 🐾 Cat-themed everything!\n\nwant details on any feature? just ask! 😼";
+    return "here's what ct-web can do! 🐱\n\n1. 🔐 Login with checkboxes (just confirm you're here to learn!)\n2. ⌨️ Keyboard shortcuts (T, V, 1-4, H, W, N, ?)\n3. 🐱 Cat facts and toy selector\n4. 🔊 Text-to-speech reader\n5. 💻 Power command terminal (commit sv, commit log, comment, chnge code to var=N)\n6. 📧 Email signup saved to SQLite\n7. 📝 Remember username feature\n8. 🐾 Cat-themed everything!\n\nwant details on any feature? just ask! 😼";
   }
 
   // --- Cat facts ---
@@ -458,7 +452,7 @@ function interTypeRespond(userMessage) {
       "options",
     ])
   ) {
-    return "I can help you with ct-web! 🐱 Try asking about:\n\n• project name / what is this\n• tech stack / built with\n• files / file structure\n• features / what can it do\n• login / how to log in\n• keyboard shortcuts\n• power commands / terminal\n• shorthand / vocabulary\n• specific files (ct.js, sound-ct.js, etc.)\n• cat facts\n• deployment\n• remember username\n\nI NEVER reveal paskeys or secrets though! 😼";
+    return "I can help you with ct-web! 🐱 Try asking about:\n\n• project name / what is this\n• tech stack / built with\n• files / file structure\n• features / what can it do\n• login / how to log in\n• keyboard shortcuts\n• power commands / terminal\n• shorthand / vocabulary\n• specific files (ct.js, sound-ct.js, etc.)\n• cat facts\n• deployment\n• remember username\n\nno paskeys here — checkboxes are the gatekeeper! 😼🐾";
   }
 
   // --- Cat-related fun ---
