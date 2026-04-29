@@ -240,6 +240,8 @@ body {
 
 /*green to plant*/
 
+#history,
+#security,
 #plant {
     font-size: 24px;
     color: rgb(255, 0, 0);
@@ -252,6 +254,8 @@ body {
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+#history:hover,
+#security:hover,
 #plant:hover {
     transform: scale(1.08) translateY(-2px);
 }
@@ -290,22 +294,6 @@ body {
 }
 
 /*nit to history*/
-
-#history {
-    font-size: 24px;
-    color: rgb(255, 0, 0);
-    font-family: inherit;
-    font-weight: bold;
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.5);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-#history:hover {
-    transform: scale(1.08) translateY(-2px);
-}
 
 /*history to cat*/
 
@@ -683,6 +671,7 @@ body {
     }
 
     #history,
+    #security,
     #plant {
         font-size: 20px;
     }
