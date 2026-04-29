@@ -377,31 +377,29 @@ body {
     transition-duration: 0.1s;
 }
 
-/*ton to reader*/
+/*ton to reader — accessible high-contrast style for visually impaired*/
 
 #reader {
-    font-size: 18px;
+    font-size: 58px;
     font-family: monospace;
     font-weight: bold;
-    color: white;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #4a90d9, #2c5aa0);
-    border: 3px solid crimson;
-    border-radius: 14px;
+    color: blue;
+    text-decoration: underline;
+    border: solid crimson;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(44, 90, 160, 0.4);
+    background: white;
     transition:
         transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
         box-shadow 0.3s ease;
 }
 
 #reader:hover {
-    transform: scale(1.08) translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 255, 0.4);
+    transform: scale(1.06);
+    box-shadow: 0 0 16px rgba(255, 0, 0, 0.5);
 }
 
 #reader:active {
-    transform: scale(0.92);
+    transform: scale(0.95);
     transition-duration: 0.1s;
 }
 
@@ -543,13 +541,12 @@ body {
     transform: scale(1.06) translateY(-2px);
 }
 
-.links-heading {
+.card-heading {
     font-size: 22px;
     color: #ff3c7f;
     text-align: center;
-    margin-left: 12px;
-    margin-bottom: 8px;
     font-weight: bold;
+    margin-bottom: 8px;
 }
 
 /* link checkbox items */
