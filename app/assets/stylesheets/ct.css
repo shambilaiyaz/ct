@@ -547,7 +547,8 @@ body {
     font-size: 22px;
     color: #ff3c7f;
     text-align: center;
-    margin: 0 0 8px 0;
+    margin-left: 12px;
+    margin-bottom: 8px;
     font-weight: bold;
 }
 
