@@ -9,9 +9,9 @@ class UserEmailsController < ApplicationController
     if @user_email.save
       respond_to do |format|
         format.html do
-          redirect_back fallback_location: root_path, notice: "Email svd! 🐾 thanks #{@user_email.username}!"
+          redirect_back fallback_location: root_path, notice: "Email saved! 🐾 thanks #{@user_email.username}!"
         end
-        format.json { render json: { message: 'Email svd! 🐾', email: @user_email.email }, status: :created }
+        format.json { render json: { message: 'Email saved! 🐾', email: @user_email.email }, status: :created }
       end
     else
       respond_to do |format|

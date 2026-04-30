@@ -51,17 +51,20 @@ var POWER_COMMANDS = [
     desc: "show the command manual",
   },
   {
-    cmd: "commit sv / commit save",
+    cmd: "commit save",
     desc: "save current page state as a new commit",
   },
-  { cmd: "commit nw / commit now", desc: "save with auto date" },
+  { cmd: "commit now", desc: "save with auto date" },
   { cmd: "commit log", desc: "show all commits" },
   { cmd: "comment <text>", desc: "leave a comment for the site" },
   { cmd: "comment delete <N>", desc: "delete comment number N" },
   { cmd: "comment clear", desc: "delete all comments (needs password)" },
   { cmd: "comments", desc: "show all comments" },
-  { cmd: "chnge code to date=N", desc: "revert page to commit by date" },
-  { cmd: "chnge code to var=N", desc: "revert page to commit by var number" },
+  { cmd: "change code to date=N", desc: "revert page to commit by date" },
+  {
+    cmd: "change code to version=N",
+    desc: "revert page to commit by version number",
+  },
 ];
 
 var FILE_INFO = {
@@ -104,12 +107,12 @@ function matchesAny(msg, keywords) {
 
 function interTypeRespond(userMessage) {
   var msg = userMessage.trim();
-  if (!msg) return "type smthing! I'm here to help 🐱";
+  if (!msg) return "type something! I'm here to help 🐱";
   if (matchesAny(msg, ["MAN", "manual", "help", "ct"])) {
     return "what do you need help with?";
   }
 
-  // help neded stuff
+  // help needed stuff
 
   if (
     matchesAny(msg, [
@@ -117,7 +120,7 @@ function interTypeRespond(userMessage) {
       "what is this black spot?",
     ])
   ) {
-    return "that's a terminal run command ~man first it's gonn'a teach you what commands are functioning here, and if you don't no what those other things does than tap on it or fell free to ask";
+    return "that's a terminal run command ~man first it's gonna teach you what commands are functioning here, and if you don't know what those other things does than tap on it or feel free to ask";
   }
   // --- Secret/password blocking (always check first!) ---
   if (
@@ -360,7 +363,7 @@ function interTypeRespond(userMessage) {
 
   // --- Email ---
   if (matchesAny(msg, ["email", "signup", "sign up", "email form"])) {
-    return 'email-ct.js and data-ct.js handle the email signup! 🐱 They:\n\n• Submit via fetch (no page redirect)\n• Include CSRF token for security\n• Show success message: "🐾 email svd! thanks!"\n• Save emails to SQLite database\n• Pre-fill username if logged in\n\nemails get stored in the cat-web database! 🐾';
+    return 'email-ct.js and data-ct.js handle the email signup! 🐱 They:\n\n• Submit via fetch (no page redirect)\n• Include CSRF token for security\n• Show success message: "🐾 email saved! thanks!"\n• Save emails to SQLite database\n• Pre-fill username if logged in\n\nemails get stored in the cat-web database! 🐾';
   }
 
   // --- Styles ---
@@ -379,7 +382,7 @@ function interTypeRespond(userMessage) {
       "capabilities",
     ])
   ) {
-    return "here's what ct-web can do! 🐱\n\n1. 🔐 Login with checkboxes (just confirm you're here to learn!)\n2. ⌨️ Keyboard shortcuts (T, V, 1-4, H, W, N, ?)\n3. 🐱 Cat facts and toy selector\n4. 🔊 Text-to-speech reader\n5. 💻 Power command terminal (commit sv, commit log, comment, chnge code to var=N)\n6. 📧 Email signup saved to SQLite\n7. 📝 Remember me feature\n8. 🐾 Cat-themed everything!\n\nwant details on any feature? just ask! 😼";
+    return "here's what ct-web can do! 🐱\n\n1. 🔐 Login with checkboxes (just confirm you're here to learn!)\n2. ⌨️ Keyboard shortcuts (T, V, 1-4, H, W, N, ?)\n3. 🐱 Cat facts and toy selector\n4. 🔊 Text-to-speech reader\n5. 💻 Power command terminal (commit save, commit log, comment, change code to version=N)\n6. 📧 Email signup saved to SQLite\n7. 📝 Remember me feature\n8. 🐾 Cat-themed everything!\n\nwant details on any feature? just ask! 😼";
   }
 
   // --- Cat facts ---

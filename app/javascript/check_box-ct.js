@@ -43,12 +43,12 @@ function submitLogin() {
   var errorEl = document.getElementById("login-error");
 
   if (!username) {
-    errorEl.textContent = "plese enter your username!";
+    errorEl.textContent = "please enter your username!";
     return;
   }
 
   if (!email) {
-    errorEl.textContent = "plese enter your email!";
+    errorEl.textContent = "please enter your email!";
     return;
   }
 

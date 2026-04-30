@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       render json: {
-        message: "Comment svd! 🐾 thanks #{@comment.user}!",
+        message: "Comment saved! 🐾 thanks #{@comment.user}!",
         comment: {
           id: @comment.id,
           user: @comment.user,

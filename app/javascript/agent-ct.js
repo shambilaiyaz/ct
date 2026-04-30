@@ -171,11 +171,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "comment delete <N>       →  delete comment #N\n" +
         "comment clear            →  delete all comments\n" +
         "comments                 →  show all comments\n" +
-        "commit sv / commit save  →  save current state\n" +
-        "commit nw / commit now   →  save with auto date\n" +
+        "commit save              →  save current state\n" +
+        "commit now               →  save with auto date\n" +
         "commit log               →  show all commits\n" +
-        "chnge code to var=N      →  revert to var:N\n" +
-        "chnge code to date=N     →  revert by date\n\n" +
+        "change code to version=N →  revert to version:N\n" +
+        "change code to date=N    →  revert by date\n\n" +
         "type these in the power command box on the page! 🐱",
     );
   }

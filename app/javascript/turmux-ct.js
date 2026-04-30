@@ -1,16 +1,16 @@
 // TURMUX-CT — Time Travel Command System
 // ===================================================================================
 // Commands:
-//   man / terminal / turmux / terminator → show this command man
+//   man / terminal / turmux / terminator → show this command manual
 //   comment <text>                       → leave a comment for the site
 //   comment delete <N>                   → delete comment number N
 //   comment clear                        → delete all comments
 //   comments                             → show all comments
-//   chnge code to date=N                 → revert page to commit by date
-//   chnge code to var=N                  → revert page to commit by var number
-//   commit sv / commit save              → save current state as a new commit
-//   commit nw / commit now               → save with auto date
-//   commit log                           → show all commits
+//   change code to date=N                → revert page to commit by date
+//   change code to version=N             → revert page to commit by version number
+//   commit save                           → save current state as a new commit
+//   commit now                            → save with auto date
+//   commit log                            → show all commits
 // ===================================================================================
 
 function getSnapshotKey(date) {
@@ -86,7 +86,7 @@ function getCommitByVar(varNum) {
 function showCommitLog() {
   let count = getCurrentVarNum();
   if (count === 0) {
-    return "No commits yet. Use 'commit save' to mak your first commit!";
+    return "No commits yet. Use 'commit save' to make your first commit!";
   }
 
   let log = "COMMIT LOG\n========================\n";
@@ -94,7 +94,7 @@ function showCommitLog() {
     let commit = getCommitByVar(i);
     if (commit) {
       log +=
-        "var:" +
+        "version:" +
         commit.var +
         " | " +
         commit.date +
@@ -113,7 +113,7 @@ function runCommand(input) {
   let cmd = input.trim().toLowerCase();
   let output = "";
 
-  let dateMatch = cmd.match(/chnge code to date=(\d+)/);
+  let dateMatch = cmd.match(/(?:chnge|change) code to date=(\d+)/);
   if (dateMatch) {
     let varNum = parseInt(dateMatch[1], 10);
     let commit = getCommitByVar(varNum);
@@ -122,7 +122,7 @@ function runCommand(input) {
       output =
         "Time-traveled to date=" +
         varNum +
-        " (var:" +
+        " (version:" +
         commit.var +
         ") — " +
         commit.label;
@@ -130,20 +130,20 @@ function runCommand(input) {
       output =
         "No commit found at date=" +
         varNum +
-        ". Max var is " +
+        ". Max version is " +
         getCurrentVarNum();
     }
     return output;
   }
 
-  let varMatch = cmd.match(/chnge code to var=(\d+)/);
+  let varMatch = cmd.match(/(?:chnge|change) code to (?:var|version)=(\d+)/);
   if (varMatch) {
     let varNum = parseInt(varMatch[1], 10);
     let commit = getCommitByVar(varNum);
     if (commit) {
       restoreCommit(commit);
       output =
-        "Time-traveled to var:" +
+        "Time-traveled to version:" +
         varNum +
         " (" +
         commit.date +
@@ -151,9 +151,9 @@ function runCommand(input) {
         commit.label;
     } else {
       output =
-        "No commit found at var:" +
+        "No commit found at version:" +
         varNum +
-        ". Max var is " +
+        ". Max version is " +
         getCurrentVarNum();
     }
     return output;
@@ -170,7 +170,8 @@ function runCommand(input) {
         ? "auto commit"
         : "manual commit";
     let commit = saveCommit(label);
-    output = "Svd! var:" + commit.var + " | " + commit.date + " " + commit.time;
+    output =
+      "Saved! version:" + commit.var + " | " + commit.date + " " + commit.time;
     return output;
   }
 
@@ -264,7 +265,7 @@ function runCommand(input) {
       );
       if (xhr.status === 201) {
         let data = JSON.parse(xhr.responseText);
-        output = data.message || "Comment svd! 🐾";
+        output = data.message || "Comment saved! 🐾";
       } else {
         let data = JSON.parse(xhr.responseText);
         output = data.errors ? data.errors.join(", ") : "Error saving comment.";
@@ -323,14 +324,14 @@ function runCommand(input) {
     cmd === "terminator"
   ) {
     output =
-      "Man/turmux/terminal/terminator — Command Man\n" +
+      "Manual/turmux/terminal/terminator — Command Manual\n" +
       "========================\n" +
-      "man/turmux/terminal/terminator\n" +
-      "  → show this command man\n\n" +
-      "chnge code to date=N\n" +
-      "  → revert page to commit var:N\n\n" +
-      "chnge code to var=N\n" +
-      "  → revert page to commit var:N\n\n" +
+      "man / turmux / terminal / terminator\n" +
+      "  → show this command manual\n\n" +
+      "change code to date=N\n" +
+      "  → revert page to commit version:N\n\n" +
+      "change code to version=N\n" +
+      "  → revert page to commit version:N\n\n" +
       "comment <text>\n" +
       "  → leave a comment for the site\n\n" +
       "comment delete <N>\n" +
@@ -339,9 +340,9 @@ function runCommand(input) {
       "  → delete all comments\n\n" +
       "comments\n" +
       "  → show all comments\n\n" +
-      "commit sv / commit save\n" +
+      "commit save\n" +
       "  → save current state as a new commit\n\n" +
-      "commit now / commit nw\n" +
+      "commit now\n" +
       "  → save with auto date\n\n" +
       "commit log\n" +
       "  → show all commits\n" +
@@ -350,7 +351,7 @@ function runCommand(input) {
   }
 
   output =
-    "Unknown command. Try:\n- terminal / turmux / terminator (show man)\n- comment <text> (leave a comment)\n- comment delete <N> (delete a comment)\n- comment clear (delete all comments)\n- comments (show all comments)\n- chnge code to date=N\n- chnge code to var=N\n- commit save\n- commit now\n- commit log";
+    "Unknown command. Try:\n- terminal / turmux / terminator (show manual)\n- comment <text> (leave a comment)\n- comment delete <N> (delete a comment)\n- comment clear (delete all comments)\n- comments (show all comments)\n- change code to date=N\n- change code to version=N\n- commit save\n- commit now\n- commit log";
   return output;
 }
 

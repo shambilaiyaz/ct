@@ -106,21 +106,21 @@ function initEmailForm() {
       })
       .then(function (data) {
         if (data.message) {
-          emailMsg.textContent = "🐾 email svd! thanks!";
+          emailMsg.textContent = "🐾 email saved! thanks!";
           emailMsg.className = "email-notice";
           emailInput.value = "";
         } else if (data.errors) {
-          emailMsg.textContent = data.errors[0] || "smthing went wrong";
+          emailMsg.textContent = data.errors[0] || "something went wrong";
           emailMsg.className = "email-alert";
         }
         submitBtn.disabled = false;
-        submitBtn.textContent = "sv 🐾";
+        submitBtn.textContent = "save 🐾";
       })
       .catch(function () {
         emailMsg.textContent = "network error, try again";
         emailMsg.className = "email-alert";
         submitBtn.disabled = false;
-        submitBtn.textContent = "sv 🐾";
+        submitBtn.textContent = "save 🐾";
       });
   });
 }
