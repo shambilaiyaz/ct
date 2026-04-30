@@ -1,0 +1,488 @@
+/* COMEAU-CT — Josh Comeau-style delightful animations and effects
+ * ===================================================================================
+ * Spring physics, shimmer, stagger, glow, wiggle, squash & stretch,
+ * fade-in reveals, and micro-interactions that make ct feel alive.
+ * =================================================================================== */
+
+/* --- Spring Physics Keyframes --- */
+
+@keyframes spring-bounce {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  70% {
+    transform: scale(1.04);
+  }
+  85% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes spring-bounce-up {
+  0% {
+    transform: translateY(30px) scale(0.9);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(-8px) scale(1.03);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(4px) scale(0.98);
+  }
+  80% {
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spring-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* --- Shimmer / Shine Keyframes --- */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shimmer-border {
+  0% {
+    border-color: rgba(255, 140, 66, 0.3);
+  }
+  50% {
+    border-color: rgba(255, 60, 127, 0.8);
+  }
+  100% {
+    border-color: rgba(255, 140, 66, 0.3);
+  }
+}
+
+/* --- Stagger Fade-In Keyframes --- */
+
+@keyframes stagger-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stagger-fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stagger-fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --- Pulse Glow Keyframes --- */
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 60, 127, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 60, 127, 0.5), 0 0 40px rgba(255, 60, 127, 0.15);
+  }
+}
+
+@keyframes pulse-glow-soft {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(255, 140, 66, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(255, 140, 66, 0.35);
+  }
+}
+
+/* --- Wiggle Keyframes --- */
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(-4deg);
+  }
+  30% {
+    transform: rotate(3deg);
+  }
+  45% {
+    transform: rotate(-2deg);
+  }
+  60% {
+    transform: rotate(1.5deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+}
+
+@keyframes wiggle-hover {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  20% {
+    transform: rotate(-6deg) scale(1.05);
+  }
+  40% {
+    transform: rotate(4deg) scale(1.03);
+  }
+  60% {
+    transform: rotate(-2deg) scale(1.01);
+  }
+  80% {
+    transform: rotate(1deg) scale(1);
+  }
+}
+
+/* --- Squash & Stretch Keyframes --- */
+
+@keyframes squash-stretch {
+  0% {
+    transform: scale(1, 1);
+  }
+  20% {
+    transform: scale(1.15, 0.88);
+  }
+  40% {
+    transform: scale(0.92, 1.08);
+  }
+  60% {
+    transform: scale(1.04, 0.97);
+  }
+  80% {
+    transform: scale(0.99, 1.01);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+/* --- Float / Hover Keyframes --- */
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes gentle-rotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1.5deg);
+  }
+  75% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+/* --- Reveal Keyframes --- */
+
+@keyframes reveal-up {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-scale {
+  0% {
+    clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* --- Sparkle Keyframes --- */
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes sparkle-rotate {
+  0% {
+    transform: rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* --- Typing Cursor Keyframes --- */
+
+@keyframes blink-cursor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* --- Ripple Keyframes --- */
+
+@keyframes ripple-out {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* --- Shake Keyframes --- */
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-3px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(3px);
+  }
+}
+
+/* --- Heartbeat Keyframes --- */
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.15);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.1);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+
+/* ===================================================================================
+ * UTILITY CLASSES — Apply animations easily
+ * =================================================================================== */
+
+/* Spring entrance */
+.spring-bounce {
+  animation: spring-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.spring-bounce-up {
+  animation: spring-bounce-up 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.spring-pop {
+  animation: spring-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Stagger children — apply to parent, delays increase for each child */
+.stagger-fade-in > * {
+  animation: stagger-fade-in 0.5s ease both;
+}
+
+.stagger-fade-in > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-fade-in > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-fade-in > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-fade-in > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-fade-in > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-fade-in > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-fade-in > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-fade-in > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger-fade-in > *:nth-child(9) { animation-delay: 0.45s; }
+
+.stagger-fade-in-left > * {
+  animation: stagger-fade-in-left 0.5s ease both;
+}
+
+.stagger-fade-in-left > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-fade-in-left > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-fade-in-left > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-fade-in-left > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-fade-in-left > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-fade-in-left > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-fade-in-left > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-fade-in-left > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger-fade-in-left > *:nth-child(9) { animation-delay: 0.45s; }
+
+/* Pulse glow */
+.pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.pulse-glow-soft {
+  animation: pulse-glow-soft 3s ease-in-out infinite;
+}
+
+/* Wiggle on hover */
+.wiggle-hover:hover {
+  animation: wiggle-hover 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Float */
+.gentle-float {
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+.gentle-rotate {
+  animation: gentle-rotate 6s ease-in-out infinite;
+}
+
+/* Reveal */
+.reveal-up {
+  animation: reveal-up 0.6s ease both;
+}
+
+.reveal-scale {
+  animation: reveal-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Shimmer effect — apply to elements with a background */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.shimmer-border {
+  animation: shimmer-border 3s ease-in-out infinite;
+}
+
+/* Squash & stretch on click */
+.squash-stretch:active {
+  animation: squash-stretch 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Sparkle */
+.sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* Blink cursor */
+.blink-cursor::after {
+  content: "|";
+  animation: blink-cursor 1s step-end infinite;
+  color: #ff3c7f;
+}
+
+/* Shake — for errors */
+.shake {
+  animation: shake 0.5s ease;
+}
+
+/* Heartbeat */
+.heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Ripple — wrap a .ripple element inside a relatively positioned button */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 20px;
+  height: 20px;
+  animation: ripple-out 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* ===================================================================================
+ * PREFERENCE: Respect reduced motion
+ * =================================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

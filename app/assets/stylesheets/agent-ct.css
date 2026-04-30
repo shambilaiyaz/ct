@@ -156,8 +156,8 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    width: 72px;
-    height: 72px;
+    width: 94px;
+    height: 94px;
     border-radius: 50%;
     border: 3px solid #ff8c42;
     background: linear-gradient(135deg, #1a0a2e, #2a1a4e);
@@ -209,8 +209,8 @@
     }
 
     .agent-toggle-btn {
-        width: 60px;
-        height: 60px;
+        width: 74px;
+        height: 74px;
         font-size: 22px;
         bottom: 16px;
         right: 16px;

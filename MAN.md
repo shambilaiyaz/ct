@@ -39,10 +39,14 @@ Kep this man handy so you don't forget!
 - Nw you can se the loc of any file using these shorthands.
 - Wwt no more — sv this man and ed it anytime!
 - Sm shorthands save sm time!
+## Shorthand Rules
+- **any 4 letter word that has vowel at 1st and 3rd letter and consonent in 2nd and at last an e** — cut e = shorthand
+- **any word that has to vowel in the middle** — cut one vowel from those 2 = shorthand 
 
 ## Project Rules
-
-- **Always commit before making any changes** — mak a git commit first so you can always go back. No exceptions!
+- **if developer say no ned then no ned to ask permission** — just do it yourself
+- **Stage it with git and generate commit msg after success** — after end of project run git add and stage evry modified folders or files and generate commit msg
+- **in any chats if said listen then listen until said do it** — if user say listen then do not get on it until user say do it
 
 ## Total: 21 Shorthands
 
