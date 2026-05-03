@@ -67,7 +67,7 @@ function submitLogin() {
   handleRemember(username, email);
   // Save email to database via AJAX (see data-ct.js)
   saveEmailFromLogin(email, username);
-  window.location.href = "/index";
+  window.location.href = "/index?from_login=true";
 }
 
 // saveEmailToDb moved to data-ct.js — now called saveEmailFromLogin()
