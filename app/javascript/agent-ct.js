@@ -183,11 +183,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // 8. main AI chat — redirect to interType
   function agentChat() {
     showOutput(
-      "💬 main AI chat!\n\nheading to interType — your ct-web AI assistant!\n\nredirecting in 3 seconds... 🐱",
+      "💬 interType's knowledge base:\n\n" +
+        "• Project name & description (ct-web)\n" +
+        "• Tech stack (Rails 8.1, SQLite, JS, etc.)\n" +
+        "• Deployment info\n" +
+        "• Login process & checkboxes\n" +
+        "• All project files (FILE_INFO)\n" +
+        "• Keyboard shortcuts (T, V, 1-4, H, W, N, ?)\n" +
+        "• Sound / text-to-speech\n" +
+        "• Toy selector (rope, rat, feather, laser)\n" +
+        "• Power commands (turmux terminal)\n" +
+        "• Agent panel features\n" +
+        "• Shorthand vocabulary (MAN.md)\n" +
+        "• Specific file details\n" +
+        "• And more...\n\n" +
+        "🔄 redirecting to interType in 15 seconds... 🐱",
     );
     setTimeout(function () {
       window.location.href = "/interType";
-    }, 3000);
+    }, 15000);
   }
 
   // 9. logout — confirm and redirect

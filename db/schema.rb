@@ -10,20 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_28_212230) do
-  create_table "comments", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "date"
-    t.text "text"
-    t.string "time"
-    t.datetime "updated_at", null: false
-    t.string "user"
+ActiveRecord::Schema[8.1].define(version: 20_260_501_000_002) do
+  create_table 'comments', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.string 'date'
+    t.text 'text'
+    t.string 'time'
+    t.datetime 'updated_at', null: false
+    t.string 'user'
   end
 
-  create_table "user_emails", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "email"
-    t.datetime "updated_at", null: false
-    t.string "username"
+  create_table 'complaints', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.string 'date'
+    t.text 'text'
+    t.string 'time'
+    t.datetime 'updated_at', null: false
+    t.string 'user'
+  end
+
+  create_table 'user_emails', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.string 'email'
+    t.datetime 'updated_at', null: false
+    t.string 'username'
   end
 end

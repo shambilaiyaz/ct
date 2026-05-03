@@ -30,6 +30,7 @@ Kep this man handy so you don't forget!
 | evr       | ever          |
 | lang      | language      |
 | mem       | memory        |
+| ne        | new           |
 
 ## Notes
 

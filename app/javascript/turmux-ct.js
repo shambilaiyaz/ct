@@ -3,9 +3,13 @@
 // Commands:
 //   man / terminal / turmux / terminator → show this command manual
 //   comment <text>                       → leave a comment for the site
-//   comment delete <N>                   → delete comment number N
+//   delete comment #N                    → delete comment number N
 //   comment clear                        → delete all comments
 //   comments                             → show all comments
+//   complain <text>                      → file a complaint
+//   delete complain #N                   → delete complaint number N
+//   complain clear                       → delete all complaints
+//   complaints                           → show all complaints
 //   change code to date=N                → revert page to commit by date
 //   change code to version=N             → revert page to commit by version number
 //   commit save                           → save current state as a new commit
@@ -180,8 +184,8 @@ function runCommand(input) {
     return output;
   }
 
-  // comment delete <N> — delete a specific comment via SQLite
-  let commentDeleteMatch = cmd.match(/^comment delete (\d+)$/);
+  // delete comment #N — delete a specific comment via SQLite
+  let commentDeleteMatch = cmd.match(/^delete comment #(\d+)$/);
   if (commentDeleteMatch) {
     let num = parseInt(commentDeleteMatch[1], 10);
     let csrfToken = document.querySelector('meta[name="csrf-token"]');
@@ -316,6 +320,151 @@ function runCommand(input) {
     return output;
   }
 
+  // delete complain #N — delete a specific complaint via SQLite
+  let complainDeleteMatch = cmd.match(/^delete complain #(\d+)$/);
+  if (complainDeleteMatch) {
+    let num = parseInt(complainDeleteMatch[1], 10);
+    let csrfToken = document.querySelector('meta[name="csrf-token"]');
+    let csrfValue = csrfToken ? csrfToken.getAttribute("content") : "";
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "/complaints/" + num, false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    if (csrfValue) xhr.setRequestHeader("X-CSRF-Token", csrfValue);
+    try {
+      xhr.send();
+      if (xhr.status === 200) {
+        let data = JSON.parse(xhr.responseText);
+        output = data.message || "Complaint deleted!";
+      } else if (xhr.status === 404) {
+        output = "Complaint #" + num + " not found.";
+      } else {
+        let data = JSON.parse(xhr.responseText);
+        output = data.errors
+          ? data.errors.join(", ")
+          : "Error deleting complaint.";
+      }
+    } catch (e) {
+      output = "Network error deleting complaint.";
+    }
+    return output;
+  }
+
+  // complain clear — delete all complaints via SQLite
+  if (cmd === "complain clear") {
+    let password = prompt("enter password to clear all complaints:");
+    if (password !== "@sqwerty") {
+      output = "wrong password! complaints not cleared.";
+      return output;
+    }
+    let csrfToken = document.querySelector('meta[name="csrf-token"]');
+    let csrfValue = csrfToken ? csrfToken.getAttribute("content") : "";
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "/complaints/clear", false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    if (csrfValue) xhr.setRequestHeader("X-CSRF-Token", csrfValue);
+    try {
+      xhr.send();
+      if (xhr.status === 200) {
+        let data = JSON.parse(xhr.responseText);
+        output = data.message || "Complaints cleared!";
+      } else {
+        output = "Error clearing complaints.";
+      }
+    } catch (e) {
+      output = "Network error clearing complaints.";
+    }
+    return output;
+  }
+
+  // complain <text> — save a user complaint to SQLite
+  let complainMatch = cmd.match(/^complain\s+(.+)/);
+  if (complainMatch) {
+    let text = input.trim().replace(/^complain\s+/i, "");
+    let username = sessionStorage.getItem("ct_username") || "anonymous";
+    let now = new Date();
+    let dateStr = now.toISOString().split("T")[0];
+    let timeStr = now.toTimeString().split(" ")[0];
+
+    let csrfToken = document.querySelector('meta[name="csrf-token"]');
+    let csrfValue = csrfToken ? csrfToken.getAttribute("content") : "";
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/complaints", false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    if (csrfValue) xhr.setRequestHeader("X-CSRF-Token", csrfValue);
+    try {
+      xhr.send(
+        JSON.stringify({
+          complaint: {
+            user: username,
+            text: text,
+            date: dateStr,
+            time: timeStr,
+          },
+        }),
+      );
+      if (xhr.status === 201) {
+        let data = JSON.parse(xhr.responseText);
+        output = data.message || "Complaint filed! 🐾";
+      } else {
+        let data = JSON.parse(xhr.responseText);
+        output = data.errors
+          ? data.errors.join(", ")
+          : "Error filing complaint.";
+      }
+    } catch (e) {
+      output = "Network error filing complaint.";
+    }
+    return output;
+  }
+
+  // complaints — show all complaints from SQLite
+  if (cmd === "complaints") {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "/complaints", false);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.setRequestHeader("Accept", "application/json");
+    try {
+      xhr.send();
+      if (xhr.status === 200) {
+        let complaints = JSON.parse(xhr.responseText);
+        if (complaints.length === 0) {
+          output = "No complaints yet. Use: complain <text>";
+        } else {
+          output = "COMPLAINTS\n========================\n";
+          for (let i = 0; i < complaints.length; i++) {
+            output +=
+              complaints[i].id +
+              ". " +
+              complaints[i].user +
+              " (" +
+              complaints[i].date +
+              " " +
+              complaints[i].time +
+              ")\n" +
+              '   "' +
+              complaints[i].text +
+              '"\n\n';
+          }
+          output +=
+            "========================\nTotal: " +
+            complaints.length +
+            " complaints";
+        }
+      } else {
+        output = "Error loading complaints.";
+      }
+    } catch (e) {
+      output = "Network error loading complaints.";
+    }
+    return output;
+  }
+
   // terminal / turmux / terminator — show command man
   if (
     cmd === "man" ||
@@ -334,12 +483,20 @@ function runCommand(input) {
       "  → revert page to commit version:N\n\n" +
       "comment <text>\n" +
       "  → leave a comment for the site\n\n" +
-      "comment delete <N>\n" +
+      "delete comment #N\n" +
       "  → delete comment number N\n\n" +
       "comment clear\n" +
       "  → delete all comments\n\n" +
       "comments\n" +
       "  → show all comments\n\n" +
+      "complain <text>\n" +
+      "  → file a complaint\n\n" +
+      "delete complain #N\n" +
+      "  → delete complaint number N\n\n" +
+      "complain clear\n" +
+      "  → delete all complaints\n\n" +
+      "complaints\n" +
+      "  → show all complaints\n\n" +
       "commit save\n" +
       "  → save current state as a new commit\n\n" +
       "commit now\n" +
@@ -351,7 +508,7 @@ function runCommand(input) {
   }
 
   output =
-    "Unknown command. Try:\n- terminal / turmux / terminator (show manual)\n- comment <text> (leave a comment)\n- comment delete <N> (delete a comment)\n- comment clear (delete all comments)\n- comments (show all comments)\n- change code to date=N\n- change code to version=N\n- commit save\n- commit now\n- commit log";
+    "Unknown command. Try:\n- terminal / turmux / terminator (show manual)\n- comment <text> (leave a comment)\n- delete comment #N (delete a comment)\n- comment clear (delete all comments)\n- comments (show all comments)\n- complain <text> (file a complaint)\n- delete complain #N (delete a complaint)\n- complain clear (delete all complaints)\n- complaints (show all complaints)\n- change code to date=N\n- change code to version=N\n- commit save\n- commit now\n- commit log";
   return output;
 }
 

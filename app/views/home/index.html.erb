@@ -46,7 +46,7 @@
 
     <!-- Facts Section -->
     <h1 class="card-heading">cat facts</h1>
-    <section class="card card-facts" aria-label="Cat facts"
+    <section class="card card-facts" aria-label="Cat facts">
       <!--researched line -->
       <h2 id="green">cats hate green</h2>
     </section>
@@ -85,9 +85,9 @@
     <h1 class="card-heading">links</h1>
     <section class="card card-links" aria-label="External links">
       <!-- link -->
-      <a href="https://github.com/shambilaiyaz/cat-web" class="link-check-item"><input type="checkbox" id="security-check" class="link-check"><label for="security-check" class="link-check-label"><span id="security">🔒 security</span></label></a>
-      <a href="https://www.britannica.com/animal/cat" class="link-check-item"><input type="checkbox" id="history-check" class="link-check"><label for="history-check" class="link-check-label"><span id="history">cats history</span></label></a>
-      <a href="https://en.wikipedia.org/wiki/Wildlife" class="link-check-item"><input type="checkbox" id="wildness-check" class="link-check"><label for="wildness-check" class="link-check-label"><span id="plant">Wildness</span></label></a>
+      <a href="https://github.com/shambilaiyaz/cat-web" class="link-check-item"><span id="security">🔒 security</span></a>
+      <a href="https://www.britannica.com/animal/cat" class="link-check-item"><span id="history">cats history</span></a>
+      <a href="https://en.wikipedia.org/wiki/Wildlife" class="link-check-item"><span id="plant">Wildness</span></a>
       <!-- link -->
     </section>
 
@@ -110,8 +110,8 @@
         <input
           type="text"
           id="power-input"
-          autocomplete="off"
-          placeholder="man for manual | comment <text> | comments | commit save"
+          autocomplete="on"
+          placeholder="man for manual | comment <text> | complain <text>"
         >
         <button id="power-btn">run</button>
         <p id="power-output"></p>
@@ -125,12 +125,6 @@
     <footer class="card-footer-logout">
       <a href="/" id="logout-link">logout</a>
     </footer>
-
-    <!-- Agent Toggle Button (floating) -->
-    <button id="agent-toggle-btn" class="agent-toggle-btn" aria-label="Open agent panel"><img src="<%= asset_path('agent-ct_logo.svg') %>" alt="ct agent" width="48" height="48"></button>
-
-    </main>
-
     <!-- Agent Panel -->
     <aside id="agent-panel" class="agent-panel" aria-label="Agent panel">
       <div class="agent-panel-header">
@@ -146,10 +140,17 @@
         <button class="agent-bootin" data-action="keymap">⌨️ keymap</button>
         <button class="agent-bootin" data-action="terminal">💻 terminal</button>
         <button class="agent-bootin" data-action="chat">💬 main AI chat</button>
+        <button class="agent-bootin" data-action="web">🌐 web</button>
         <button class="agent-bootin" data-action="logout">🚪 logout</button>
       </div>
       <div id="agent-output" class="agent-output"></div>
     </aside>
+
+    <!-- Agent Toggle Button (floating) -->
+    <button id="agent-toggle-btn" class="agent-toggle-btn" aria-label="Open agent panel"><img src="<%= asset_path('agent-ct_logo.svg') %>" alt="ct agent" width="48" height="48"></button>
+
+    </main>
+
 
   </div>
 

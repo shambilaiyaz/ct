@@ -1,17 +1,17 @@
 // KEYMAP — keyboard shortcuts for ct
 // ===================================================================================
-// | Key | Action                |
-// |-----|-----------------------|
-// | T   | Click "ton" button    |
-// | V   | Click "read for me"   |
-// | 1   | Select rope           |
-// | 2   | Select rat            |
-// | 3   | Select feather        |
-// | 4   | Select laser          |
-// | H   | Open cats history     |
-// | W   | Open Wildness link    |
-// | N   | Focus note input      |
-// | ?   | Show keymap help      |
+// | Key(s)        | Action                |
+// |---------------|-----------------------|
+// | Ctrl+Shift+T  | Click "ton" button    |
+// | Ctrl+Shift+V  | Click "read for me"   |
+// | Ctrl+Shift+1  | Select rope           |
+// | Ctrl+Shift+2  | Select rat            |
+// | Ctrl+Shift+3  | Select feather        |
+// | Ctrl+Shift+4  | Select laser          |
+// | Ctrl+Shift+H  | Open cats history     |
+// | Ctrl+Shift+W  | Open Wildness link    |
+// | Ctrl+Shift+N  | Focus note input      |
+// | Ctrl+Shift+?  | Show keymap help      |
 // ===================================================================================
 
 function isTyping() {
@@ -22,18 +22,18 @@ function isTyping() {
 function showKeymap() {
   alert(
     "KEYMAP\n" +
-      "========================\n" +
-      "T  →  ton button\n" +
-      "v  →  read for me\n" +
-      "1  →  rope\n" +
-      "2  →  rat\n" +
-      "3  →  feather\n" +
-      "4  →  laser\n" +
-      "H  →  cats history link\n" +
-      "W  →  Wildness link\n" +
-      "N  →  focus note input\n" +
-      "?  →  show this help\n" +
-      "========================",
+      "================================\n" +
+      "Ctrl+Shift+T  →  ton button\n" +
+      "Ctrl+Shift+V  →  read for me\n" +
+      "Ctrl+Shift+1  →  rope\n" +
+      "Ctrl+Shift+2  →  rat\n" +
+      "Ctrl+Shift+3  →  feather\n" +
+      "Ctrl+Shift+4  →  laser\n" +
+      "Ctrl+Shift+H  →  cats history link\n" +
+      "Ctrl+Shift+W  →  Wildness link\n" +
+      "Ctrl+Shift+N  →  focus note input\n" +
+      "Ctrl+Shift+?  →  show this help\n" +
+      "================================",
   );
 }
 
@@ -77,6 +77,9 @@ document.addEventListener("keydown", function (e) {
 
   // don't trigger shortcuts while typing in the note input or a select
   if (isTyping()) return;
+
+  // require Ctrl+Shift to trigger shortcuts
+  if (!(e.ctrlKey && e.shiftKey)) return;
 
   switch (key) {
     case "t":
