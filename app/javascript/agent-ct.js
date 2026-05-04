@@ -204,7 +204,109 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 15000);
   }
 
-  // 9. logout — confirm and redirect
+  // 9. agent chat — inline interType chat form
+  function agentQws() {
+    var output = document.getElementById("agent-output");
+    if (!output) return;
+
+    output.innerHTML = "";
+
+    var title = document.createElement("div");
+    title.style.marginBottom = "8px";
+    title.style.fontWeight = "bold";
+    title.textContent = "❓ agent chat — ask interType";
+    output.appendChild(title);
+
+    // Messages area
+    var msgs = document.createElement("div");
+    msgs.style.maxHeight = "200px";
+    msgs.style.overflowY = "auto";
+    msgs.style.marginBottom = "8px";
+    msgs.style.padding = "4px";
+    msgs.style.background = "#1a1a2e";
+    msgs.style.borderRadius = "8px";
+    msgs.style.fontSize = "13px";
+    msgs.style.lineHeight = "1.5";
+    output.appendChild(msgs);
+
+    // Form with POST method
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.onsubmit = function (e) { e.preventDefault(); };
+
+    var inputRow = document.createElement("div");
+    inputRow.style.display = "flex";
+    inputRow.style.gap = "4px";
+
+    var input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "ask interType something...";
+    input.style.flex = "1";
+    input.style.padding = "6px 8px";
+    input.style.borderRadius = "6px";
+    input.style.border = "1px solid #ff8c42";
+    input.style.background = "#16213e";
+    input.style.color = "#fff";
+    input.style.fontSize = "13px";
+    inputRow.appendChild(input);
+
+    var sendBtn = document.createElement("button");
+    sendBtn.textContent = "➤";
+    sendBtn.style.padding = "6px 12px";
+    sendBtn.style.borderRadius = "6px";
+    sendBtn.style.border = "none";
+    sendBtn.style.background = "#ff8c42";
+    sendBtn.style.color = "#1a0a2e";
+    sendBtn.style.fontWeight = "bold";
+    sendBtn.style.cursor = "pointer";
+    sendBtn.type = "submit";
+    inputRow.appendChild(sendBtn);
+
+    form.appendChild(inputRow);
+    output.appendChild(form);
+
+    var welcome = document.createElement("div");
+    welcome.style.marginBottom = "4px";
+    welcome.style.padding = "4px 8px";
+    welcome.style.background = "#0d0015";
+    welcome.style.borderRadius = "6px";
+    welcome.style.color = "#4caf50";
+    welcome.textContent = "🤖 ask me anything about ct-web!";
+    msgs.appendChild(welcome);
+
+    // Submit handler
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var text = input.value.trim();
+      if (!text) return;
+
+      var userMsg = document.createElement("div");
+      userMsg.style.marginBottom = "4px";
+      userMsg.style.padding = "4px 8px";
+      userMsg.style.background = "#16213e";
+      userMsg.style.borderRadius = "6px";
+      userMsg.style.color = "#ff8c42";
+      userMsg.textContent = "🧑 " + text;
+      msgs.appendChild(userMsg);
+
+      var botMsg = document.createElement("div");
+      botMsg.style.marginBottom = "4px";
+      botMsg.style.padding = "4px 8px";
+      botMsg.style.background = "#0d0015";
+      botMsg.style.borderRadius = "6px";
+      botMsg.style.color = "#4caf50";
+      botMsg.textContent = "🤖 " + interTypeRespond(text);
+      msgs.appendChild(botMsg);
+
+      input.value = "";
+      input.focus();
+      msgs.scrollTop = msgs.scrollHeight;
+    });
+
+    input.focus();
+  }
+
+  // 10. logout — confirm and redirect
   function agentLogout() {
     showOutput(
       "🚪 logout!\n\nleaving the cat zone in 3 seconds...\n\nsee you later! 🐾🐱",
@@ -225,6 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
     keymap: agentKeymap,
     terminal: agentTerminal,
     chat: agentChat,
+    qws: agentQws,
     logout: agentLogout,
   };
 
