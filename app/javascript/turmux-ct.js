@@ -244,6 +244,22 @@ function runCommand(input) {
     return output;
   }
 
+  // comment man / comments man — show comment commands
+  if (cmd === "comment man" || cmd === "comments man") {
+    output =
+      "Comment Commands\n" +
+      "========================\n" +
+      "comment <text>\n" +
+      "  → leave a comment for the site\n\n" +
+      "delete comment #N\n" +
+      "  → delete comment number N\n\n" +
+      "comment clear\n" +
+      "  → delete all comments\n\n" +
+      "comments\n" +
+      "  → show all comments";
+    return output;
+  }
+
   // comment <text> — save a user comment to SQLite
   let commentMatch = cmd.match(/^comment\s+(.+)/);
   if (commentMatch) {
@@ -380,6 +396,22 @@ function runCommand(input) {
     return output;
   }
 
+  // complain man / complaints man — show complaint commands
+  if (cmd === "complain man" || cmd === "complaints man") {
+    output =
+      "Complaint Commands\n" +
+      "========================\n" +
+      "complain <text>\n" +
+      "  → file a complaint\n\n" +
+      "delete complain #N\n" +
+      "  → delete complaint number N\n\n" +
+      "complain clear\n" +
+      "  → delete all complaints\n\n" +
+      "complaints\n" +
+      "  → show all complaints";
+    return output;
+  }
+
   // complain <text> — save a user complaint to SQLite
   let complainMatch = cmd.match(/^complain\s+(.+)/);
   if (complainMatch) {
@@ -465,6 +497,50 @@ function runCommand(input) {
     return output;
   }
 
+  // man <topic> — show specific command manual
+  let manTopicMatch = cmd.match(/^(man|turmux|terminal|terminator)\s+(.+)/);
+  if (manTopicMatch) {
+    let topic = manTopicMatch[2].trim();
+    if (topic === "comment" || topic === "comments") {
+      output =
+        "Comment Commands\n" +
+        "========================\n" +
+        "comment <text>\n" +
+        "  → leave a comment for the site\n\n" +
+        "delete comment #N\n" +
+        "  → delete comment number N\n\n" +
+        "comment clear\n" +
+        "  → delete all comments\n\n" +
+        "comments\n" +
+        "  → show all comments";
+    } else if (topic === "complain" || topic === "complaints") {
+      output =
+        "Complaint Commands\n" +
+        "========================\n" +
+        "complain <text>\n" +
+        "  → file a complaint\n\n" +
+        "delete complain #N\n" +
+        "  → delete complaint number N\n\n" +
+        "complain clear\n" +
+        "  → delete all complaints\n\n" +
+        "complaints\n" +
+        "  → show all complaints";
+    } else if (topic === "commit") {
+      output =
+        "Commit Commands\n" +
+        "========================\n" +
+        "commit save\n" +
+        "  → save current state as a new commit\n\n" +
+        "commit now\n" +
+        "  → save with auto date\n\n" +
+        "commit log\n" +
+        "  → show all commits";
+    } else {
+      output = "Unknown topic: " + topic + ". Try: comment, complain, commit";
+    }
+    return output;
+  }
+
   // terminal / turmux / terminator — show command man
   if (
     cmd === "man" ||
@@ -477,6 +553,8 @@ function runCommand(input) {
       "========================\n" +
       "man / turmux / terminal / terminator\n" +
       "  → show this command manual\n\n" +
+      "man <topic>\n" +
+      "  → show manual for a specific topic (comment, complain, commit)\n\n" +
       "change code to date=N\n" +
       "  → revert page to commit version:N\n\n" +
       "change code to version=N\n" +
@@ -508,7 +586,7 @@ function runCommand(input) {
   }
 
   output =
-    "Unknown command. Try:\n- terminal / turmux / terminator (show manual)\n- comment <text> (leave a comment)\n- delete comment #N (delete a comment)\n- comment clear (delete all comments)\n- comments (show all comments)\n- complain <text> (file a complaint)\n- delete complain #N (delete a complaint)\n- complain clear (delete all complaints)\n- complaints (show all complaints)\n- change code to date=N\n- change code to version=N\n- commit save\n- commit now\n- commit log";
+    "Unknown command. Try:\n- terminal / turmux / terminator (show manual)\n- man <topic> (show manual for comment, complain, commit)\n- comment <text> (leave a comment)\n- delete comment #N (delete a comment)\n- comment clear (delete all comments)\n- comments (show all comments)\n- complain <text> (file a complaint)\n- delete complain #N (delete a complaint)\n- complain clear (delete all complaints)\n- complaints (show all complaints)\n- change code to date=N\n- change code to version=N\n- commit save\n- commit now\n- commit log";
   return output;
 }
 
