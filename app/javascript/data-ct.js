@@ -49,7 +49,7 @@ function saveEmailToDb(email, username) {
 // --- Save email from login page (called by check_box-ct.js) ---
 
 function saveEmailFromLogin(email, username) {
-  saveEmailToDb(email, username).catch(function () {
+  return saveEmailToDb(email, username).catch(function () {
     // silently fail — email save is non-critical
   });
 }
