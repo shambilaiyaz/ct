@@ -134,8 +134,62 @@ function fillEmailUsername(username) {
   }
 }
 
+// --- Init feedback form (submit via fetch, stay on page) ---
+
+function initFeedbackForm() {
+  var form = document.querySelector("form[action='/feedbacks']");
+  if (!form) return;
+
+  var fu = document.getElementById("feedback-username");
+  if (fu) {
+    var u = sessionStorage.getItem("ct_username");
+    if (u) fu.value = u;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var input = document.getElementById("feedback-input");
+    var text = input ? input.value.trim() : "";
+    if (!text) return;
+
+    var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+    var headers = {
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    };
+    if (csrfMeta) headers["X-CSRF-Token"] = csrfMeta.getAttribute("content");
+
+    var data = {
+      feedback: {
+        text: text,
+        username: fu ? fu.value : "",
+      },
+    };
+
+    fetch("/feedbacks", {
+      method: "POST",
+      headers: headers,
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+    })
+      .then(function (res) {
+        if (res.ok) {
+          input.value = "";
+          input.placeholder = "feedback sent! 🐾";
+        } else {
+          input.placeholder = "error, try again";
+        }
+      })
+      .catch(function () {
+        input.placeholder = "network error, try again";
+      });
+  });
+}
+
 // --- Init on DOM ready ---
 
 document.addEventListener("DOMContentLoaded", function () {
   initEmailForm();
+  initFeedbackForm();
 });

@@ -39,56 +39,6 @@
             <button type="submit" style="margin-top:8px;padding:8px 20px;font-size:0.95rem;font-weight:bold;color:white;background:linear-gradient(135deg,#ff6b6b,#ff3c7f);border:none;border-radius:10px;cursor:pointer;">send feedback 🐾</button>
         </form>
 
-        <script>
-            (function() {
-                var fu = document.getElementById("feedback-username");
-                if (fu) {
-                    var u = sessionStorage.getItem("ct_username");
-                    if (u) fu.value = u;
-                }
-
-                var form = document.querySelector("form[action='/feedbacks']");
-                if (form) {
-                    form.addEventListener("submit", function(e) {
-                        e.preventDefault();
-                        var input = document.getElementById("feedback-input");
-                        var text = input ? input.value.trim() : "";
-                        if (!text) return;
-
-                        var csrfToken = document.querySelector('meta[name="csrf-token"]');
-                        var headers = {
-                            "X-Requested-With": "XMLHttpRequest",
-                            "Content-Type": "application/json",
-                            "Accept": "application/json"
-                        };
-                        if (csrfToken) headers["X-CSRF-Token"] = csrfToken.getAttribute("content");
-
-                        var data = {
-                            feedback: {
-                                text: text,
-                                username: fu ? fu.value : ""
-                            }
-                        };
-
-                        fetch("/feedbacks", {
-                            method: "POST",
-                            headers: headers,
-                            credentials: "same-origin",
-                            body: JSON.stringify(data)
-                        }).then(function(res) {
-                            if (res.ok) {
-                                input.value = "";
-                                input.placeholder = "feedback sent! 🐾";
-                            } else {
-                                input.placeholder = "error, try again";
-                            }
-                        }).catch(function() {
-                            input.placeholder = "network error, try again";
-                        });
-                    });
-                }
-            })();
-        </script>
 
         <div class="login-paws">🐾🐾🐾</div>
         <button id="login-btn" disabled>🐾 enter the cat zone 🐾</button>
