@@ -10,29 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 20_260_501_000_002) do
-  create_table 'comments', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.string 'date'
-    t.text 'text'
-    t.string 'time'
-    t.datetime 'updated_at', null: false
-    t.string 'user'
+ActiveRecord::Schema[8.1].define(version: 2026_05_05_115400) do
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "date"
+    t.text "text"
+    t.string "time"
+    t.datetime "updated_at", null: false
+    t.string "user"
   end
 
-  create_table 'complaints', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.string 'date'
-    t.text 'text'
-    t.string 'time'
-    t.datetime 'updated_at', null: false
-    t.string 'user'
+  create_table "complaints", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "date"
+    t.text "text"
+    t.string "time"
+    t.datetime "updated_at", null: false
+    t.string "user"
   end
 
-  create_table 'user_emails', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.string 'email'
-    t.datetime 'updated_at', null: false
-    t.string 'username'
+  create_table "feedbacks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "text"
+    t.datetime "updated_at", null: false
+    t.string "username"
+  end
+
+  create_table "pending_verifications", force: :cascade do |t|
+    t.string "confirmation_token", null: false
+    t.datetime "created_at", null: false
+    t.string "email", null: false
+    t.datetime "updated_at", null: false
+    t.string "username", null: false
+    t.index ["confirmation_token"], name: "index_pending_verifications_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_pending_verifications_on_email"
+  end
+
+  create_table "user_emails", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.datetime "updated_at", null: false
+    t.string "username"
   end
 end

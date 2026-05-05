@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/index', to: 'home#index', as: 'home'
   get '/interType', to: 'home#inter_type', as: 'interType'
   resources :user_emails, only: [:create]
+  resources :feedbacks, only: [:create]
   delete 'comments/clear', to: 'comments#clear', as: :clear_comments
   resources :comments, only: %i[index create destroy]
   delete 'complaints/clear', to: 'complaints#clear', as: :clear_complaints

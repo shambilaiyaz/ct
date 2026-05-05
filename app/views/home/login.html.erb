@@ -32,6 +32,23 @@
             <input type="checkbox" id="done-check" value="script">
             <label for="done-check" class="check-label">done ✅</label>
         </div>
+
+        <form method="POST" action="/feedbacks">
+            <input type="text" id="feedback-input" name="feedback[text]" placeholder="please give a feedback" style="width:100%;padding:10px 14px;font-size:1rem;border:2.5px solid #ff8c42;border-radius:12px;background:rgba(255,255,255,0.85);outline:none;box-sizing:border-box;">
+            <input type="hidden" name="feedback[username]" id="feedback-username" value="">
+            <button type="submit" style="margin-top:8px;padding:8px 20px;font-size:0.95rem;font-weight:bold;color:white;background:linear-gradient(135deg,#ff6b6b,#ff3c7f);border:none;border-radius:10px;cursor:pointer;">send feedback 🐾</button>
+        </form>
+
+        <script>
+            (function() {
+                var fu = document.getElementById("feedback-username");
+                if (fu) {
+                    var u = sessionStorage.getItem("ct_username");
+                    if (u) fu.value = u;
+                }
+            })();
+        </script>
+
         <div class="login-paws">🐾🐾🐾</div>
         <button id="login-btn" disabled>🐾 enter the cat zone 🐾</button>
         <p id="login-error"></p>
