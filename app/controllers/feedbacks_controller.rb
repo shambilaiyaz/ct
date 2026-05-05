@@ -8,13 +8,13 @@ class FeedbacksController < ApplicationController
     if @feedback.save
       respond_to do |format|
         format.html do
-          redirect_back fallback_location: root_path, notice: 'Feedback saved! 🐾'
+          redirect_to root_path, notice: 'Feedback saved! 🐾'
         end
         format.json { render json: { message: 'Feedback saved! 🐾' }, status: :created }
       end
     else
       respond_to do |format|
-        format.html { redirect_back fallback_location: root_path, alert: @feedback.errors.full_messages.first }
+        format.html { redirect_to root_path, alert: @feedback.errors.full_messages.first }
         format.json { render json: { errors: @feedback.errors.full_messages }, status: :unprocessable_entity }
       end
     end

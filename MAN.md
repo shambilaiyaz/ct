@@ -46,7 +46,7 @@ Kep this man handy so you don't forget!
 
 ## Project Rules
 - **if developer say no ned then no ned to ask permission** — just do it yourself
-- **Stage it with git and generate commit msg after success** — after end of project run git add and stage evry modified folders or files and generate commit msg
+- **"success" = stage and generate commit msg** — when user says "success", run git add and stage all modified files then generate a commit message (do NOT commit)
 - **in any chats if said listen then listen until said do it** — if user say listen then do not get on it until user say do it
 **when said commited** — know that it is commited
 ## Total: 21 Shorthands
